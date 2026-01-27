@@ -11,7 +11,7 @@
 </head>
 <body class="min-h-screen bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50 text-gray-900 antialiased">
     <!-- Header -->
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
@@ -39,14 +39,14 @@
                 <!-- CTA Button -->
                 <div class="flex items-center gap-3">
                     @if (request()->is('bei*'))
-                        <a href="/" class="btn-primary text-xs sm:text-sm px-4 py-2">
+                        <a href="/" class="inline-flex items-center justify-center text-white bg-[#8A4BE2] hover:bg-[#7A3BD6] text-xs sm:text-sm px-4 py-2 rounded-lg transition-all shadow-sm hover:shadow-md">
                             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
                             CDC & Humas
                         </a>
                     @else
-                        <a href="/bei" class="btn-primary text-xs sm:text-sm px-4 py-2">
+                        <a href="/bei" class="inline-flex items-center justify-center text-white bg-[#8A4BE2] hover:bg-[#7A3BD6] text-xs sm:text-sm px-4 py-2 rounded-lg transition-all shadow-sm hover:shadow-md">
                             <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
@@ -84,7 +84,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+    <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-0 sm:pt-2 pb-8 sm:pb-12">
         @yield('content')
     </main>
 

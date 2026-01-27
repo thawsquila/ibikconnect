@@ -3,16 +3,16 @@
 @section('content')
 <div class="space-y-24 pb-20">
     <!-- Hero Section: Clean Fintech Style -->
-    <section class="relative pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden bg-white">
+    <section class="relative pt-2 lg:pt-4 pb-20 lg:pb-28 -mt-1 sm:-mt-2 overflow-hidden bg-white w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
         <!-- Background accents -->
-        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-linear-to-bl from-blue-50 to-transparent"></div>
-        <div class="absolute top-1/4 left-1/4 -z-10 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+        <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-linear-to-bl from-[#F1E9FB] to-transparent"></div>
+        <div class="absolute top-1/4 left-1/4 -z-10 w-64 h-64 bg-[#D7C2F5] rounded-full blur-3xl opacity-50"></div>
 
         <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
                     <!-- Badge -->
-                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-semibold tracking-wide border border-blue-100">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#D7C2F5] text-[#8A4BE2] rounded-full text-sm font-semibold tracking-wide border border-blue-100">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
                         </svg>
@@ -22,7 +22,7 @@
                     <!-- Main Heading -->
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 leading-tight tracking-tight">
                         Cerdas Investasi <br/>
-                        Mulai <span class="text-blue-600">Dari Kampus</span>
+                        Mulai <span class="text-[#8A4BE2]">Dari Kampus</span>
                     </h1>
 
                     <!-- Description -->
@@ -32,7 +32,7 @@
 
                     <!-- CTA Group -->
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#edukasi" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 hover:-translate-y-1">
+                        <a href="#edukasi" class="inline-flex items-center justify-center px-8 py-4 bg-[#8A4BE2] text-white font-bold rounded-xl hover:bg-[#7A3BD6] transition-all shadow-lg hover:-translate-y-1">
                             Mulai Belajar
                             <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -64,7 +64,7 @@
                     <div class="relative z-10 bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 overflow-hidden duration-500">
                         <div class="flex items-center justify-between mb-8 border-b border-gray-50 pb-4">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg">
+                                <div class="w-10 h-10 bg-[#8A4BE2] rounded-xl flex items-center justify-center text-white shadow-lg">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                                     </svg>
@@ -83,7 +83,7 @@
                         <!-- Chart Mockup -->
                         <div class="h-48 flex items-end gap-2 mb-8 px-2">
                             @foreach([40, 60, 45, 80, 55, 90, 75, 100, 85, 95] as $h)
-                            <div class="flex-1 bg-blue-50 rounded-full relative group transition-all hover:bg-blue-600" style="height: {{ $h }}%">
+                            <div class="flex-1 bg-blue-50 rounded-full relative group transition-all hover:bg-[#8A4BE2]" style="height: {{ $h }}%">
                                 <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                                     +{{ $h }}%
                                 </div>
@@ -141,10 +141,10 @@
     <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div class="grid lg:grid-cols-2 gap-16">
             <div class="space-y-6">
-                <div class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold uppercase tracking-widest">
+                <div class="inline-block px-4 py-1.5 bg-[#F1E9FB] text-[#8A4BE2] rounded-lg text-xs font-bold uppercase tracking-widest">
                     Visi Kami
                 </div>
-                <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">Menjadi Pusat <span class="text-blue-600">Literasi Pasar Modal</span> Terdepan di Jawa Barat.</h2>
+                <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">Menjadi Pusat <span class="text-[#8A4BE2]">Literasi Pasar Modal</span> Terdepan di Jawa Barat.</h2>
                 <p class="text-lg text-gray-600 leading-relaxed">Gallery BEI IBI Kesatuan berkomitmen untuk menjembatani dunia pendidikan dengan industri pasar modal secara rill, menciptakan ekosistem belajar yang inklusif dan profesional bagi mahasiswa.</p>
             </div>
             <div class="grid sm:grid-cols-2 gap-8">
@@ -168,8 +168,8 @@
 
     <!-- Market Insights: Wide Ticker -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div class="bg-blue-600 rounded-3xl p-1 flex items-center shadow-xl shadow-blue-600/20 overflow-hidden">
-            <div class="bg-blue-700 px-6 py-4 rounded-2xl font-black text-white text-xs tracking-widest uppercase shrink-0">
+        <div class="bg-[#A67CE6] rounded-3xl p-1 flex items-center shadow-xl shadow-[#8A4BE2]/30 overflow-hidden">
+            <div class="bg-[#8A4BE2] px-6 py-4 rounded-2xl font-black text-white text-xs tracking-widest uppercase shrink-0">
                 Market_Live
             </div>
             <div class="flex-1 overflow-hidden">
@@ -193,13 +193,13 @@
                 <!-- Why Invest (Benefits) -->
                 <div class="space-y-12">
                     <div class="space-y-4">
-                        <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">Kenapa Harus Mulai <span class="text-blue-600">Investasi Sejak Mahasiswa?</span></h2>
+                        <h2 class="text-4xl font-extrabold text-gray-900 leading-tight">Kenapa Harus Mulai <span class="text-[#8A4BE2]">Investasi Sejak Mahasiswa?</span></h2>
                         <p class="text-lg text-gray-600">Waktu adalah aset terbesar Anda. Semakin cepat Anda mulai, semakin besar efek bunga majemuk yang Anda dapatkan.</p>
                     </div>
                     
                     <div class="grid gap-6">
                         <div class="flex gap-6 p-6 bg-white rounded-3xl border border-blue-100 shadow-sm">
-                            <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 bg-[#8A4BE2] text-white rounded-2xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
                             </div>
                             <div>
@@ -208,7 +208,7 @@
                             </div>
                         </div>
                         <div class="flex gap-6 p-6 bg-white rounded-3xl border border-blue-100 shadow-sm">
-                            <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shrink-0">
+                            <div class="w-12 h-12 bg-[#8A4BE2] text-white rounded-2xl flex items-center justify-center shrink-0">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                             </div>
                             <div>
@@ -221,7 +221,7 @@
 
                 <!-- Steps (Panduan) with Step-by-Step Animation -->
                 <div class="bg-white rounded-[3rem] p-12 shadow-2xl shadow-blue-600/5 border border-gray-100 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-[#F1E9FB] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
                     <div class="relative z-10 space-y-10">
                         <div class="text-center pb-8 border-b border-gray-50">
                             <h3 class="text-2xl font-extrabold text-gray-900">4 Langkah Mudah Mulai</h3>
@@ -234,7 +234,7 @@
                             
                             <!-- Step 1 -->
                             <div class="flex gap-6 items-start relative step-animation" style="--step-delay: 0s">
-                                <div class="w-10 h-10 bg-white border-2 border-blue-600 text-blue-600 rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">1</div>
+                                <div class="w-10 h-10 bg-white border-2 border-[#8A4BE2] text-[#8A4BE2] rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">1</div>
                                 <div class="pt-1">
                                     <h5 class="font-bold text-gray-900 step-title transition-all duration-500">Registrasi Kelas</h5>
                                     <p class="text-xs text-gray-500 leading-relaxed mt-1">Daftar Sekolah Pasar Modal (SPM) untuk mendapatkan basic knowledge.</p>
@@ -243,7 +243,7 @@
                             
                             <!-- Step 2 -->
                             <div class="flex gap-6 items-start relative step-animation" style="--step-delay: 2s">
-                                <div class="w-10 h-10 bg-white border-2 border-blue-600 text-blue-600 rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">2</div>
+                                <div class="w-10 h-10 bg-white border-2 border-[#8A4BE2] text-[#8A4BE2] rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">2</div>
                                 <div class="pt-1">
                                     <h5 class="font-bold text-gray-900 step-title transition-all duration-500">Buka Rekening RDN</h5>
                                     <p class="text-xs text-gray-500 leading-relaxed mt-1">Siapkan KTP dan KTM untuk pembukaan akun trading melalui partner resmi.</p>
@@ -252,7 +252,7 @@
                             
                             <!-- Step 3 -->
                             <div class="flex gap-6 items-start relative step-animation" style="--step-delay: 4s">
-                                <div class="w-10 h-10 bg-white border-2 border-blue-600 text-blue-600 rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">3</div>
+                                <div class="w-10 h-10 bg-white border-2 border-[#8A4BE2] text-[#8A4BE2] rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">3</div>
                                 <div class="pt-1">
                                     <h5 class="font-bold text-gray-900 step-title transition-all duration-500">Deposit Modal Awal</h5>
                                     <p class="text-xs text-gray-500 leading-relaxed mt-1">Cukup dengan Rp 100.000, Anda sudah bisa mulai beli saham perdana Anda.</p>
@@ -261,7 +261,7 @@
                             
                             <!-- Step 4 -->
                             <div class="flex gap-6 items-start relative step-animation" style="--step-delay: 6s">
-                                <div class="w-10 h-10 bg-white border-2 border-blue-600 text-blue-600 rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">4</div>
+                                <div class="w-10 h-10 bg-white border-2 border-[#8A4BE2] text-[#8A4BE2] rounded-full flex items-center justify-center font-black shrink-0 relative z-10 step-circle transition-all duration-500">4</div>
                                 <div class="pt-1">
                                     <h5 class="font-bold text-gray-900 step-title transition-all duration-500">Mulai Trading</h5>
                                     <p class="text-xs text-gray-500 leading-relaxed mt-1">Gunakan aplikasi dari partner sekuritas untuk bertransaksi secara rill!</p>
@@ -334,7 +334,7 @@
                     <h2 class="text-3xl font-extrabold text-gray-900">Galeri Kegiatan</h2>
                     <p class="text-gray-600 mt-1">Dokumentasi perjalanan literasi keuangan mahasiswa IBI.</p>
                 </div>
-                <a href="#" class="text-blue-600 font-black text-sm uppercase tracking-widest hover:text-blue-700">Lihat Semua</a>
+                <a href="#" class="text-[#8A4BE2] font-black text-sm uppercase tracking-widest hover:text-[#8A4BE2]">Lihat Semua</a>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -356,17 +356,17 @@
 
     <!-- Investment Simulator Section: Light Theme -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-24">
-        <div class="bg-white border-2 border-blue-50 rounded-[3.5rem] p-12 lg:p-20 overflow-hidden relative shadow-2xl shadow-blue-600/5">
+        <div class="bg-white border-2 border-blue-50 rounded-[3.5rem] p-12 lg:p-20 overflow-hidden relative shadow-2xl shadow-[#8A4BE2]/10">
             <div class="absolute top-0 right-0 w-full h-full opacity-[0.03]" style="background-image: radial-gradient(circle at 2px 2px, #2563eb 1px, transparent 0); background-size: 32px 32px;"></div>
             
             <div class="relative z-10 grid lg:grid-cols-2 gap-20 items-center">
                 <div class="space-y-10">
                     <div class="space-y-4">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl text-xs font-black uppercase tracking-widest">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F1E9FB] text-[#8A4BE2] rounded-xl text-xs font-black uppercase tracking-widest">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                             Profit Simulator
                         </div>
-                        <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">Simulasi Masa <br/><span class="text-blue-600">Depan Finansialmu</span></h2>
+                        <h2 class="text-5xl font-extrabold text-gray-900 leading-tight">Simulasi Masa <br/><span class="text-[#8A4BE2]">Depan Finansialmu</span></h2>
                         <p class="text-gray-500 text-lg leading-relaxed">Lihat bagaimana investasi kecil yang rutin bisa tumbuh besar melalui efek <span class="font-bold text-gray-900 italic">compounding magic</span>.</p>
                     </div>
                     
@@ -381,7 +381,7 @@
                                 <input type="number" id="calc-year" value="10" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 text-gray-900 font-bold text-xl outline-hidden focus:border-blue-600 focus:bg-white transition-all">
                             </div>
                         </div>
-                        <button onclick="calculateInvestment()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl shadow-xl shadow-blue-600/30 transition-all transform active:scale-95 text-lg">Hitung Pertumbuhan</button>
+                        <button onclick="calculateInvestment()" class="w-full bg-[#8A4BE2] hover:bg-[#7A3BD6] text-white font-black py-5 rounded-2xl shadow-xl shadow-[#8A4BE2]/30 transition-all transform active:scale-95 text-lg">Hitung Pertumbuhan</button>
                     </div>
                 </div>
 
@@ -389,9 +389,9 @@
                     <!-- Decorative Circles -->
                     <div class="absolute -top-12 -right-12 w-64 h-64 bg-blue-100/50 rounded-full blur-3xl opacity-50"></div>
                     
-                    <div class="relative z-10 bg-white rounded-[3rem] p-12 border border-blue-50 text-center space-y-8 shadow-2xl shadow-blue-600/10">
+                    <div class="relative z-10 bg-white rounded-[3rem] p-12 border border-blue-50 text-center space-y-8 shadow-2xl shadow-[#8A4BE2]/15">
                         <div class="space-y-2">
-                            <p class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em]">Estimated Result</p>
+                            <p class="text-[10px] font-black text-[#8A4BE2] uppercase tracking-[0.2em]">Estimated Result</p>
                             <p id="calc-result" class="text-4xl lg:text-6xl font-black text-gray-900 tracking-tighter transition-all">Rp 2,593,742</p>
                         </div>
                         
@@ -403,7 +403,7 @@
 
                         <div class="grid grid-cols-2 gap-4 pt-4">
                             <div class="bg-blue-50/50 rounded-2xl p-6">
-                                <p class="text-[9px] text-blue-600 font-black uppercase tracking-widest mb-1">Total Return</p>
+                                <p class="text-[9px] text-[#8A4BE2] font-black uppercase tracking-widest mb-1">Total Return</p>
                                 <p class="text-2xl font-black text-gray-900">159%</p>
                             </div>
                             <div class="bg-gray-50 rounded-2xl p-6">
@@ -421,10 +421,10 @@
     <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div class="grid lg:grid-cols-4 gap-8">
             <!-- KSPM Card: Enhanced Branding -->
-            <div class="lg:col-span-1 bg-blue-600 rounded-[3rem] p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-blue-600/20 group">
+            <div class="lg:col-span-1 bg-[#8A4BE2] rounded-[3rem] p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-[#8A4BE2]/20 group">
                 <div class="absolute inset-0 bg-linear-to-br from-white/10 to-transparent"></div>
                 <div class="relative space-y-10">
-                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-blue-600 shadow-xl shadow-black/10">
+                    <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-[#8A4BE2] shadow-xl shadow-black/10">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
                     <div>
@@ -447,7 +447,7 @@
             <!-- Testimonial Cards: Premium Floating Layout -->
             <div class="lg:col-span-3 grid md:grid-cols-2 gap-8">
                 <!-- Testi 1 -->
-                <div class="bg-white border-2 border-gray-50 p-10 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-gray-200/20 hover:border-blue-600/10 transition-all relative overflow-hidden">
+                <div class="bg-white border-2 border-gray-50 p-10 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-gray-200/20 hover:border-[#8A4BE2]/10 hover:shadow-2xl hover:shadow-[#8A4BE2]/10 transition-all relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-5">
                         <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.895 14.912 16 16.017 16H19.017V14C19.017 11.791 17.226 10 15.017 10H14.017V7H15.017C18.883 7 22.017 10.134 22.017 14V21H14.017ZM3.017 21L3.017 18C3.017 16.895 3.912 16 5.017 16H8.017V14C8.017 11.791 6.226 10 4.017 10H3.017V7H4.017C7.883 7 11.017 10.134 11.017 14V21H3.017Z"/></svg>
                     </div>
@@ -463,7 +463,7 @@
                     </div>
                 </div>
                 <!-- Testi 2 -->
-                <div class="bg-white border-2 border-gray-50 p-10 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-gray-200/20 hover:border-blue-600/10 transition-all relative overflow-hidden">
+                <div class="bg-white border-2 border-gray-50 p-10 rounded-[3rem] flex flex-col justify-between shadow-2xl shadow-gray-200/20 hover:border-[#8A4BE2]/10 hover:shadow-2xl hover:shadow-[#8A4BE2]/10 transition-all relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-5">
                         <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.895 14.912 16 16.017 16H19.017V14C19.017 11.791 17.226 10 15.017 10H14.017V7H15.017C18.883 7 22.017 10.134 22.017 14V21H14.017ZM3.017 21L3.017 18C3.017 16.895 3.912 16 5.017 16H8.017V14C8.017 11.791 6.226 10 4.017 10H3.017V7H4.017C7.883 7 11.017 10.134 11.017 14V21H3.017Z"/></svg>
                     </div>
@@ -484,9 +484,9 @@
 
     <!-- Registration & Contact: Wide Section -->
     <section id="daftar" class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
-        <div class="bg-white border-2 border-blue-50 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-600/5">
+        <div class="bg-[#D7C2F5] border-2 border-blue-50 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-600/5">
             <div class="grid lg:grid-cols-2">
-                <div class="p-12 lg:p-20 bg-blue-600 text-white space-y-8 flex flex-col justify-center">
+                <div class="p-12 lg:p-20 bg-[#8A4BE2] text-white space-y-8 flex flex-col justify-center">
                     <h2 class="text-4xl font-extrabold leading-[1.1]">Siap Mulai Perjalanan <br/>Investasimu?</h2>
                     <p class="text-blue-100 text-lg leading-relaxed">Daftarkan diri Anda untuk mengikuti seminar atau workshop terdekat. Kursi terbatas untuk setiap sesi.</p>
                     
@@ -503,7 +503,7 @@
                     </div>
                 </div>
                 
-                <div class="p-12 lg:p-20">
+                <div class="p-12 lg:p-20 bg-[#F1E9FB]">
                     @if (session('status'))
                         <div class="mb-8 rounded-2xl border border-green-200 bg-green-50 p-4 flex items-center gap-3 text-green-700 font-bold text-sm">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
@@ -529,7 +529,7 @@
                                 <option value="Webinar BEI">Webinar Nasional Pasar Modal</option>
                             </select>
                         </div>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl shadow-xl shadow-blue-600/30 transition-all active:scale-95 flex items-center justify-center gap-2 text-lg">
+                        <button type="submit" class="w-full bg-[#8A4BE2] hover:bg-[#7A3BD6] text-white font-black py-5 rounded-2xl shadow-xl shadow-[#8A4BE2]/30 transition-all active:scale-95 flex items-center justify-center gap-2 text-lg">
                             Kirim Pendaftaran
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </button>
@@ -544,20 +544,20 @@
 @keyframes stepHighlight {
     0%, 25% { 
         transform: scale(1.1);
-        background-color: #2563eb;
+        background-color: #8A4BE2;
         color: white;
-        box-shadow: 0 0 20px rgba(37,99,235,0.4);
+        box-shadow: 0 0 20px rgba(138,75,226,0.4);
     }
     100% {
         transform: scale(1);
         background-color: white;
-        color: #2563eb;
+        color: #8A4BE2;
         box-shadow: none;
     }
 }
 
 @keyframes textHighlight {
-    0%, 25% { color: #2563eb; transform: translateX(5px); }
+    0%, 25% { color: #8A4BE2; transform: translateX(5px); }
     100% { color: #111827; transform: translateX(0); }
 }
 
