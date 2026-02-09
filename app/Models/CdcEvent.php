@@ -7,29 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Model untuk event Gallery BEI
- * Mengelola event pasar modal, seminar, workshop, dll
+ * Model untuk event CDC (Career Development Center)
+ * Mengelola agenda kegiatan seperti seminar, workshop, job fair, dll
  */
-class BeiEvent extends Model
+class CdcEvent extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'bei_events';
+    protected $table = 'cdc_events';
 
     protected $fillable = [
         'title',
         'description',
-        'starts_at',
+        'start_date',
+        'end_date',
         'location',
+        'event_type',
         'max_participants',
         'registered_count',
         'banner_image',
+        'requirements',
         'is_published',
         'is_registration_open',
     ];
 
     protected $casts = [
-        'starts_at' => 'datetime',
+        'start_date' => 'datetime',
+        'end_date' => 'datetime',
         'is_published' => 'boolean',
         'is_registration_open' => 'boolean',
     ];
@@ -39,7 +43,15 @@ class BeiEvent extends Model
      */
     public function registrations()
     {
-        return $this->hasMany(BeiRegistration::class, 'event_id');
+        return $this->hasMany(CdcEventRegistration::class, 'event_id');
+    }
+
+    /**
+     * Relasi ke galeri foto
+     */
+    public function galleries()
+    {
+        return $this->hasMany(CdcGallery::class, 'event_id');
     }
 
     /**
@@ -59,6 +71,14 @@ class BeiEvent extends Model
     }
 
     /**
+     * Scope untuk event mendatang
+     */
+    public function scopeUpcoming($query)
+    {
+        return $query->where('start_date', '>=', now());
+    }
+
+    /**
      * Check apakah event masih ada slot
      */
     public function hasAvailableSlots(): bool
@@ -75,5 +95,16 @@ class BeiEvent extends Model
     public function incrementRegisteredCount(): void
     {
         $this->increment('registered_count');
+    }
+
+    /**
+     * Get sisa slot yang tersedia
+     */
+    public function getAvailableSlotsAttribute(): ?int
+    {
+        if (!$this->max_participants) {
+            return null;
+        }
+        return max(0, $this->max_participants - $this->registered_count);
     }
 }
