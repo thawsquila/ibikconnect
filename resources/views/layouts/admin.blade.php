@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'Admin Panel') - IBI Connect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="min-h-screen bg-gray-50 antialiased">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside class="hidden lg:flex lg:shrink-0">
+            <div class="flex flex-col w-64 bg-white border-r border-gray-200">
+                <!-- Logo -->
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
+                    <img src="{{ asset('LOGO_IBIK.png') }}" alt="IBI" class="h-10">
+                    <span class="ml-2 text-lg font-bold text-gray-900">Admin Panel</span>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                    @if(auth()->user()->isCdcAdmin())
+                    <div class="mb-4">
+                        <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">CDC Management</p>
+                        <a href="{{ route('admin.cdc.dashboard') }}" class="flex items-center px-3 py-2 mt-2 text-sm font-medium rounded-lg {{ request()->routeIs('admin.cdc.dashboard') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                        <a href="{{ route('admin.cdc.jobs.index') }}" class="flex items-center px-3 py-2 mt-1 text-sm font-medium rounded-lg {{ request()->routeIs('admin.cdc.jobs.*') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            Lowongan Kerja
+                        </a>
+                        <a href="{{ route('admin.cdc.events.index') }}" class="flex items-center px-3 py-2 mt-1 text-sm font-medium rounded-lg {{ request()->routeIs('admin.cdc.events.*') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Event & Agenda
+                        </a>
+                        <a href="{{ route('admin.cdc.news.index') }}" class="flex items-center px-3 py-2 mt-1 text-sm font-medium rounded-lg {{ request()->routeIs('admin.cdc.news.*') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                            </svg>
+                            Berita
+                        </a>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->isBeiAdmin())
+                    <div class="mb-4">
+                        <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">BEI Management</p>
+                        <a href="{{ route('admin.bei.dashboard') }}" class="flex items-center px-3 py-2 mt-2 text-sm font-medium rounded-lg {{ request()->routeIs('admin.bei.*') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                            <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                            </svg>
+                            Gallery BEI
+                        </a>
+                    </div>
+                    @endif
+                </nav>
+
+                <!-- User Menu -->
+                <div class="shrink-0 p-4 border-t border-gray-200">
+                    <div class="flex items-center">
+                        <div class="shrink-0">
+                            <div class="w-10 h-10 rounded-full bg-[#8A4BE2] flex items-center justify-center text-white font-bold">
+                                {{ substr(auth()->user()->name, 0, 1) }}
+                            </div>
+                        </div>
+                        <div class="ml-3 flex-1">
+                            <p class="text-sm font-medium text-gray-900">{{ auth()->user()->name }}</p>
+                            <p class="text-xs text-gray-500">{{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}</p>
+                        </div>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="text-gray-400 hover:text-gray-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Bar -->
+            <header class="flex items-center justify-between h-16 px-6 bg-white border-b border-gray-200">
+                <div class="flex items-center">
+                    <button class="lg:hidden text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                    <h1 class="ml-4 text-xl font-semibold text-gray-900">@yield('page-title', 'Dashboard')</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="{{ route('home') }}" target="_blank" class="text-sm text-gray-600 hover:text-gray-900">
+                        <svg class="w-5 h-5 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                        </svg>
+                        Lihat Website
+                    </a>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <main class="flex-1 overflow-y-auto bg-gray-50">
+                <div class="px-6 py-8">
+                    <!-- Flash Messages -->
+                    @if(session('success'))
+                    <div class="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 flex items-center">
+                        <svg class="w-5 h-5 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p class="text-sm font-medium text-green-800">{{ session('success') }}</p>
+                    </div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="mb-6 rounded-lg border border-red-200 bg-red-50 p-4 flex items-center">
+                        <svg class="w-5 h-5 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <p class="text-sm font-medium text-red-800">{{ session('error') }}</p>
+                    </div>
+                    @endif
+
+                    @yield('content')
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
