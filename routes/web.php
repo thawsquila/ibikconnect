@@ -93,5 +93,10 @@ Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function 
         
         // Galleries
         Route::resource('galleries', \App\Http\Controllers\Admin\BeiGalleryController::class);
+        
+        // Member Registrations
+        Route::get('registrations', [\App\Http\Controllers\Admin\BeiRegistrationController::class, 'index'])->name('registrations.index');
+        Route::put('registrations/{registration}/status', [\App\Http\Controllers\Admin\BeiRegistrationController::class, 'updateStatus'])->name('registrations.status');
+        Route::delete('registrations/{registration}', [\App\Http\Controllers\Admin\BeiRegistrationController::class, 'destroy'])->name('registrations.destroy');
     });
 });

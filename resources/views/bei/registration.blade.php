@@ -16,64 +16,9 @@
         <p class="text-lg text-gray-600 max-w-2xl mx-auto">Bergabunglah dengan komunitas investor muda dan dapatkan akses ke berbagai program edukasi pasar modal</p>
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-8">
-        <!-- Benefits -->
-        <div class="lg:col-span-1 space-y-6">
-            <div class="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 class="font-bold text-gray-900 mb-4">Keuntungan Member</h3>
-                <ul class="space-y-3">
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-sm text-gray-700">Akses gratis ke semua materi edukasi</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-sm text-gray-700">Prioritas pendaftaran event & workshop</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-sm text-gray-700">Sertifikat Sekolah Pasar Modal</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-sm text-gray-700">Networking dengan praktisi pasar modal</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <svg class="w-5 h-5 text-green-600 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span class="text-sm text-gray-700">Akses trading floor real-time</span>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Upcoming Events -->
-            @if($upcomingEvents->count() > 0)
-            <div class="bg-white rounded-xl border border-gray-200 p-6">
-                <h3 class="font-bold text-gray-900 mb-4">Event Mendatang</h3>
-                <div class="space-y-3">
-                    @foreach($upcomingEvents as $event)
-                    <div class="text-sm">
-                        <p class="font-semibold text-gray-900 line-clamp-2">{{ $event->title }}</p>
-                        <p class="text-xs text-gray-500 mt-1">{{ $event->starts_at ? $event->starts_at->format('d M Y') : '-' }}</p>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-            @endif
-        </div>
-
-        <!-- Registration Form -->
-        <div class="lg:col-span-2">
-            <div class="bg-white rounded-xl border border-gray-200 p-8">
+    <!-- Registration Form -->
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white rounded-xl border border-gray-200 p-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Form Pendaftaran</h2>
                 
                 @if(session('success'))
@@ -117,17 +62,7 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Event (Opsional)</label>
-                        <select name="event_id" 
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                            <option value="">-- Pendaftaran Umum --</option>
-                            @foreach($upcomingEvents as $event)
-                            <option value="{{ $event->id }}">{{ $event->title }}</option>
-                            @endforeach
-                        </select>
-                        <p class="text-xs text-gray-500 mt-1">Pilih event jika ingin langsung mendaftar event tertentu</p>
-                    </div>
+
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Pesan / Motivasi</label>
@@ -159,7 +94,6 @@
                     </div>
                 </form>
             </div>
-        </div>
     </div>
 </div>
 @endsection

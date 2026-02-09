@@ -133,14 +133,7 @@ class BEIController extends Controller
      */
     public function registration()
     {
-        $upcomingEvents = BeiEvent::published()
-            ->openRegistration()
-            ->where('starts_at', '>=', now())
-            ->latest('starts_at')
-            ->limit(5)
-            ->get();
-
-        return view('bei.registration', compact('upcomingEvents'));
+        return view('bei.registration');
     }
 
     /**
@@ -153,32 +146,20 @@ class BEIController extends Controller
             'nim' => ['nullable', 'string', 'max:50'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:20'],
-            'event_id' => ['nullable', 'exists:bei_events,id'],
             'message' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        // Get event if specified
-        $event = null;
-        if ($validated['event_id']) {
-            $event = BeiEvent::find($validated['event_id']);
-        }
-
         BeiRegistration::create([
-            'event_id' => $validated['event_id'] ?? null,
+            'event_id' => null,
             'name' => $validated['name'],
             'nim' => $validated['nim'] ?? null,
             'email' => $validated['email'],
             'phone' => $validated['phone'] ?? null,
             'message' => $validated['message'] ?? null,
-            'event_title' => $event ? $event->title : 'Pendaftaran Umum',
+            'event_title' => 'Pendaftaran Member Gallery BEI',
             'status' => 'pending',
         ]);
 
-        // Increment event registered count if event specified
-        if ($event) {
-            $event->increment('registered_count');
-        }
-
-        return back()->with('success', 'Pendaftaran terkirim. Terima kasih!');
+        return back()->with('success', 'Pendaftaran terkirim. Terima kasih! Tim kami akan menghubungi Anda segera.');
     }
 }
