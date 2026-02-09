@@ -62,9 +62,5 @@ Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function 
         
         // Galleries
         Route::resource('galleries', \App\Http\Controllers\Admin\BeiGalleryController::class);
-        
-        // Legacy routes for backward compatibility
-        Route::post('/events', [BeiAdminController::class, 'storeEvent'])->name('events.store.legacy');
-        Route::post('/events/{event}/delete', [BeiAdminController::class, 'deleteEvent'])->name('events.delete');
     });
 });
