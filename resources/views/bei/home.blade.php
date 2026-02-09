@@ -8,7 +8,7 @@
         <div class="absolute top-0 right-0 -z-10 w-1/2 h-full bg-linear-to-bl from-[#F1E9FB] to-transparent"></div>
         <div class="absolute top-1/4 left-1/4 -z-10 w-64 h-64 bg-[#D7C2F5] rounded-full blur-3xl opacity-50"></div>
 
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="space-y-8">
                     <!-- Badge -->
@@ -119,7 +119,7 @@
     </section>
 
     <!-- Partners Section -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 -mt-12 relative z-20">
+    <section class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12 -mt-12 relative z-20">
         <div class="bg-white rounded-3xl shadow-xl border border-gray-100 p-8">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="shrink-0 border-r-2 border-gray-50 pr-12 hidden md:block">
@@ -139,7 +139,7 @@
     </section>
 
     <!-- Visi & Misi Section -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
+    <section class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div class="grid lg:grid-cols-2 gap-16">
             <div class="space-y-6">
                 <div class="inline-block px-4 py-1.5 bg-[#F1E9FB] text-[#8A4BE2] rounded-lg text-xs font-bold uppercase tracking-widest">
@@ -168,7 +168,7 @@
     </section>
 
     <!-- Market Insights: Wide Ticker -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <section class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
         <div class="bg-[#A67CE6] rounded-3xl p-1 flex items-center shadow-xl shadow-[#8A4BE2]/30 overflow-hidden">
             <div class="bg-[#8A4BE2] px-6 py-4 rounded-2xl font-black text-white text-xs tracking-widest uppercase shrink-0">
                 Market_Live
@@ -189,7 +189,7 @@
 
     <!-- Why Invest & Steps Section -->
     <section class="bg-blue-50/30 py-24">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
             <div class="grid lg:grid-cols-2 gap-24 items-start">
                 <!-- Why Invest (Benefits) -->
                 <div class="space-y-12">
@@ -280,7 +280,7 @@
     </section>
 
     <!-- Academy Section: Wide Grid -->
-    <section id="edukasi" class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <section id="edukasi" class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
         <div class="text-center space-y-4 mb-16">
             <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">Investment Academy</h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kami merancang kurikulum yang mudah dipahami bagi siapa saja yang ingin memulai perjalanan investasi mereka.</p>
@@ -329,7 +329,7 @@
     </section>
 
     <section class="bg-gray-50 py-24">
-        <div class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
             <div class="flex items-center justify-between mb-12">
                 <div>
                     <h2 class="text-3xl font-extrabold text-gray-900">Galeri Kegiatan</h2>
@@ -356,7 +356,7 @@
     </section>
 
     <!-- Investment Simulator Section: Light Theme -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-24">
+    <section class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12 py-24">
         <div class="bg-white border-2 border-blue-50 rounded-[3.5rem] p-12 lg:p-20 overflow-hidden relative shadow-2xl shadow-[#8A4BE2]/10">
             <div class="absolute top-0 right-0 w-full h-full opacity-[0.03]" style="background-image: radial-gradient(circle at 2px 2px, #2563eb 1px, transparent 0); background-size: 32px 32px;"></div>
             
@@ -419,7 +419,7 @@
     </section>
 
     <!-- Refined Social Proof & KSPM Section -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 py-12">
+    <section class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12 py-12">
         <div class="grid lg:grid-cols-4 gap-8">
             <!-- KSPM Card: Enhanced Branding -->
             <div class="lg:col-span-1 bg-[#8A4BE2] rounded-[3rem] p-10 text-white flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-[#8A4BE2]/20 group">
@@ -484,7 +484,7 @@
     </section>
 
     <!-- Registration & Contact: Wide Section -->
-    <section id="daftar" class="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12">
+    <section id="daftar" class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
         <div class="bg-[#D7C2F5] border-2 border-blue-50 rounded-[3rem] overflow-hidden shadow-2xl shadow-blue-600/5">
             <div class="grid lg:grid-cols-2">
                 <div class="p-12 lg:p-20 bg-[#8A4BE2] text-white space-y-8 flex flex-col justify-center">

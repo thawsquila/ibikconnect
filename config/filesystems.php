@@ -77,4 +77,28 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Storage Paths
+    |--------------------------------------------------------------------------
+    |
+    | Define custom storage paths for different types of uploads
+    |
+    */
+    'upload_paths' => [
+        'cdc' => [
+            'jobs' => 'cdc/jobs',
+            'events' => 'cdc/events',
+            'news' => 'cdc/news',
+            'galleries' => 'cdc/galleries',
+            'partners' => 'cdc/partners',
+        ],
+        'bei' => [
+            'events' => 'bei/events',
+            'educations' => 'bei/educations',
+            'galleries' => 'bei/galleries',
+        ],
+        'users' => 'users/avatars',
+    ],
+
 ];
