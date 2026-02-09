@@ -23,6 +23,14 @@
 
                 <!-- Navigation -->
                 <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+                    <!-- Overview Menu - Always visible -->
+                    <a href="{{ route('admin.overview') }}" class="flex items-center px-3 py-2 text-sm font-medium rounded-lg {{ request()->routeIs('admin.overview') ? 'bg-[#8A4BE2] text-white' : 'text-gray-700 hover:bg-gray-100' }}">
+                        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v7a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM4 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-3zM14 16a1 1 0 011-1h4a1 1 0 011 1v3a1 1 0 01-1 1h-4a1 1 0 01-1-1v-3z"/>
+                        </svg>
+                        Overview
+                    </a>
+
                     @if(auth()->user()->isCdcAdmin())
                     <div class="mb-4">
                         <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider">CDC Management</p>

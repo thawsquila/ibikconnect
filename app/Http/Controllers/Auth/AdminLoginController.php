@@ -60,18 +60,8 @@ class AdminLoginController extends Controller
      */
     protected function redirectToDashboard()
     {
-        $user = Auth::user();
-
-        if ($user->isCdcAdmin()) {
-            return redirect()->route('admin.cdc.dashboard');
-        }
-
-        if ($user->isBeiAdmin()) {
-            return redirect()->route('admin.bei.dashboard');
-        }
-
-        // Default fallback
-        return redirect()->route('admin.cdc.dashboard');
+        // Always redirect to overview page
+        return redirect()->route('admin.overview');
     }
 
     public function logout(Request $request)

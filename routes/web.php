@@ -26,20 +26,8 @@ Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 // Protected admin routes
 Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function () {
     
-    // Root admin-page redirect
-    Route::get('/', function () {
-        $user = Auth::user();
-        
-        if ($user->isCdcAdmin()) {
-            return redirect()->route('admin.cdc.dashboard');
-        }
-        
-        if ($user->isBeiAdmin()) {
-            return redirect()->route('admin.bei.dashboard');
-        }
-        
-        return redirect()->route('admin.cdc.dashboard');
-    })->name('dashboard');
+    // Overview - Default landing page
+    Route::get('/', [\App\Http\Controllers\Admin\OverviewController::class, 'index'])->name('overview');
     
     // CDC Admin Routes
     Route::prefix('cdc')->name('cdc.')->group(function () {
