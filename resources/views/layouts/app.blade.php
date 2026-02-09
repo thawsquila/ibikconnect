@@ -159,10 +159,14 @@
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && href !== '') {
-                    e.preventDefault();
                     const target = document.querySelector(href);
                     if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        e.preventDefault();
+                        const header = document.querySelector('header');
+                        const offset = header ? header.offsetHeight + 8 : 0; // extra padding
+                        const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                        const scrollTo = Math.max(elementPosition - offset, 0);
+                        window.scrollTo({ top: scrollTo, behavior: 'smooth' });
                         // Close mobile menu if open
                         document.getElementById('mobile-menu')?.classList.add('hidden');
                     }

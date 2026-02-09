@@ -127,8 +127,9 @@
                     <p class="text-sm font-bold text-gray-900">Bursa Efek Indonesia & Sekuritas</p>
                 </div>
                 <div class="flex-1 flex flex-wrap justify-center md:justify-around items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                    <!-- Partner Logos (Placeholder with Text for now) -->
+                    <!-- Partner Logos (Placeholder with Text/Logos) -->
                     <span class="text-xl font-black text-blue-900 tracking-tighter">IDX</span>
+                    <span class="text-xl font-black text-red-700 tracking-tighter">OJK</span>
                     <span class="text-xl font-black text-red-600 tracking-tighter">MNC <span class="text-gray-400">Sekuritas</span></span>
                     <span class="text-xl font-black text-blue-600 tracking-tighter">IndoPremier</span>
                     <span class="text-xl font-black text-indigo-900 tracking-tighter">PhillipCapital</span>
@@ -518,8 +519,12 @@
                             <input name="name" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="text" placeholder="Masukkan nama lengkap" required>
                         </div>
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Email Mahasiswa</label>
-                            <input name="email" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="email" placeholder="contoh@ibi.ac.id" required>
+                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">NIM (opsional)</label>
+                            <input name="nim" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="text" placeholder="Masukkan NIM (jika mahasiswa)">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Email</label>
+                            <input name="email" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="email" placeholder="nama@email.com" required>
                         </div>
                         <div class="space-y-2">
                             <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Pilih Event</label>

@@ -18,6 +18,7 @@ class BEIController extends Controller
     {
         $data = $request->validate([
             'name' => ['required','string','max:255'],
+            'nim' => ['nullable','string','max:50'],
             'email' => ['required','email','max:255'],
             'event' => ['required','string','max:255'],
         ]);
@@ -28,6 +29,7 @@ class BEIController extends Controller
         BeiRegistration::create([
             'event_id' => $event?->id,
             'name' => $data['name'],
+            'nim' => $data['nim'] ?? null,
             'email' => $data['email'],
             'event_title' => $data['event'],
         ]);

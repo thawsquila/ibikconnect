@@ -12,7 +12,7 @@ class BeiRegistration extends Model
     protected $table = 'bei_registrations';
 
     protected $fillable = [
-        'event_id', 'name', 'email', 'event_title'
+        'event_id', 'name', 'nim', 'email', 'event_title'
     ];
 
     public function event()
