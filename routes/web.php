@@ -46,11 +46,22 @@ Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
 // Protected admin routes
 Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function () {
     
-    // Overview - Default landing page
+    // Overview - Default landing page (accessible by all admins)
     Route::get('/', [\App\Http\Controllers\Admin\OverviewController::class, 'index'])->name('overview');
     
-    // CDC Admin Routes
-    Route::prefix('cdc')->name('cdc.')->group(function () {
+    // User Management - Super Admin Only
+    Route::middleware('role:super_admin')->prefix('users')->name('users.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('index');
+        Route::get('/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('create');
+        Route::post('/', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('store');
+        Route::get('/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('edit');
+        Route::put('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('update');
+        Route::delete('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('destroy');
+        Route::put('/{user}/password', [\App\Http\Controllers\Admin\UserController::class, 'updatePassword'])->name('password');
+    });
+    
+    // CDC Admin Routes - Super Admin & CDC Admin Only
+    Route::middleware('role:super_admin,cdc_admin')->prefix('cdc')->name('cdc.')->group(function () {
         Route::get('/', [CdcAdminController::class, 'dashboard'])->name('dashboard');
         
         // Job Listings
@@ -69,8 +80,8 @@ Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function 
         Route::post('news/{news}/publish', [CdcNewsController::class, 'publish'])->name('news.publish');
     });
     
-    // BEI Admin Routes
-    Route::prefix('bei')->name('bei.')->group(function () {
+    // BEI Admin Routes - Super Admin & BEI Admin Only
+    Route::middleware('role:super_admin,bei_admin')->prefix('bei')->name('bei.')->group(function () {
         Route::get('/', [BeiAdminController::class, 'dashboard'])->name('dashboard');
         
         // Events
