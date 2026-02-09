@@ -64,7 +64,19 @@ Route::middleware('auth')->prefix('admin-page')->name('admin.')->group(function 
     // BEI Admin Routes
     Route::prefix('bei')->name('bei.')->group(function () {
         Route::get('/', [BeiAdminController::class, 'dashboard'])->name('dashboard');
-        Route::post('/events', [BeiAdminController::class, 'storeEvent'])->name('events.store');
+        
+        // Events
+        Route::resource('events', \App\Http\Controllers\Admin\BeiEventController::class);
+        Route::get('events/{event}/registrations', [\App\Http\Controllers\Admin\BeiEventController::class, 'registrations'])->name('events.registrations');
+        
+        // Education Materials
+        Route::resource('educations', \App\Http\Controllers\Admin\BeiEducationController::class);
+        
+        // Galleries
+        Route::resource('galleries', \App\Http\Controllers\Admin\BeiGalleryController::class);
+        
+        // Legacy routes for backward compatibility
+        Route::post('/events', [BeiAdminController::class, 'storeEvent'])->name('events.store.legacy');
         Route::post('/events/{event}/delete', [BeiAdminController::class, 'deleteEvent'])->name('events.delete');
     });
 });

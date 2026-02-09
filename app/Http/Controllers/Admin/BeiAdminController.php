@@ -11,9 +11,17 @@ class BeiAdminController extends Controller
 {
     public function dashboard()
     {
-        $events = BeiEvent::orderBy('starts_at', 'asc')->get();
-        $registrations = BeiRegistration::latest()->get();
-        return view('bei.admin.dashboard', compact('events', 'registrations'));
+        $stats = [
+            'total_events' => BeiEvent::count(),
+            'total_registrations' => BeiRegistration::count(),
+            'total_educations' => \App\Models\BeiEducation::count(),
+            'total_galleries' => \App\Models\BeiGallery::count(),
+        ];
+
+        $events = BeiEvent::latest('starts_at')->limit(5)->get();
+        $registrations = BeiRegistration::latest()->limit(10)->get();
+        
+        return view('bei.admin.dashboard', compact('stats', 'events', 'registrations'));
     }
 
     public function storeEvent(Request $request)

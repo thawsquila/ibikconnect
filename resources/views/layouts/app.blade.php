@@ -68,7 +68,7 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
             <nav class="px-4 py-3 space-y-1">
                 @if (request()->is('bei*'))
-                    <a href="/bei#profil" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">Profil</a>
+                    <a href="/bei#profil" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-purple-600 rounded-lg">Profil</a>
                     <a href="/bei#edukasi" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">Edukasi</a>
                     <a href="/bei#event" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">Event</a>
                     <a href="/bei#galeri" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg">Galeri</a>
@@ -107,10 +107,10 @@
                 <div>
                     <h3 class="font-semibold text-gray-900 mb-4">Tautan Cepat</h3>
                     <ul class="space-y-2 text-sm">
-                        <li><a href="/" class="text-gray-600 hover:text-blue-600 transition-colors">CDC & Humas</a></li>
-                        <li><a href="/bei" class="text-gray-600 hover:text-blue-600 transition-colors">Gallery BEI</a></li>
-                        <li><a href="/#lowongan" class="text-gray-600 hover:text-blue-600 transition-colors">Info Lowongan</a></li>
-                        <li><a href="/bei#event" class="text-gray-600 hover:text-blue-600 transition-colors">Event Pasar Modal</a></li>
+                        <li><a href="/" class="text-gray-600 hover:text-purple-600 transition-colors">CDC & Humas</a></li>
+                        <li><a href="/bei" class="text-gray-600 hover:text-purple-600 transition-colors">Gallery BEI</a></li>
+                        <li><a href="/#lowongan" class="text-gray-600 hover:text-purple-600 transition-colors">Info Lowongan</a></li>
+                        <li><a href="/bei#event" class="text-gray-600 hover:text-purple-600 transition-colors">Event Pasar Modal</a></li>
                     </ul>
                 </div>
 
