@@ -11,12 +11,32 @@ use App\Http\Controllers\Admin\CdcEventController;
 use App\Http\Controllers\Admin\CdcNewsController;
 use App\Http\Controllers\Auth\AdminLoginController;
 
-// Public routes
+// Public routes - CDC
 Route::get('/', [CDCController::class, 'index'])->name('home');
-Route::post('/cdc/register', [CDCController::class, 'register'])->name('cdc.register');
+Route::prefix('cdc')->name('cdc.')->group(function () {
+    Route::get('/lowongan', [CDCController::class, 'jobs'])->name('jobs');
+    Route::get('/lowongan/{job}', [CDCController::class, 'jobDetail'])->name('jobs.detail');
+    Route::get('/agenda', [CDCController::class, 'events'])->name('events');
+    Route::get('/agenda/{event}', [CDCController::class, 'eventDetail'])->name('events.detail');
+    Route::post('/agenda/{event}/register', [CDCController::class, 'registerEvent'])->name('events.register');
+    Route::get('/berita', [CDCController::class, 'news'])->name('news');
+    Route::get('/berita/{news}', [CDCController::class, 'newsDetail'])->name('news.detail');
+    Route::get('/kontak', [CDCController::class, 'contact'])->name('contact');
+});
 
+// Public routes - BEI
 Route::get('/bei', [BEIController::class, 'index'])->name('bei.home');
-Route::post('/bei/register', [BEIController::class, 'register'])->name('bei.register');
+Route::prefix('bei')->name('bei.')->group(function () {
+    Route::get('/profil', [BEIController::class, 'profile'])->name('profile');
+    Route::get('/edukasi', [BEIController::class, 'educations'])->name('educations');
+    Route::get('/edukasi/{education}', [BEIController::class, 'educationDetail'])->name('educations.detail');
+    Route::get('/event', [BEIController::class, 'events'])->name('events');
+    Route::get('/event/{event}', [BEIController::class, 'eventDetail'])->name('events.detail');
+    Route::post('/event/{event}/register', [BEIController::class, 'registerEvent'])->name('events.register');
+    Route::get('/galeri', [BEIController::class, 'gallery'])->name('gallery');
+    Route::get('/pendaftaran', [BEIController::class, 'registration'])->name('registration');
+    Route::post('/pendaftaran', [BEIController::class, 'submitRegistration'])->name('registration.submit');
+});
 
 // Auth routes
 Route::get('/login', [AdminLoginController::class, 'showLoginForm'])->name('login');
