@@ -7,7 +7,7 @@
     <!-- Header -->
     <div class="mb-6">
         <div class="flex items-center gap-3 mb-2">
-            <a href="{{ route('cdc.admin.jobs.index') }}" class="text-gray-600 hover:text-gray-900">
+            <a href="{{ route('admin.cdc.jobs.index') }}" class="text-gray-600 hover:text-gray-900">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
@@ -19,7 +19,7 @@
 
     <!-- Form Card -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-        <form action="{{ route('cdc.admin.jobs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
+        <form action="{{ route('admin.cdc.jobs.store') }}" method="POST" enctype="multipart/form-data" class="space-y-6">
             @csrf
 
             <!-- Title -->
@@ -188,7 +188,7 @@
                     class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-colors">
                     Simpan Lowongan
                 </button>
-                <a href="{{ route('cdc.admin.jobs.index') }}"
+                <a href="{{ route('admin.cdc.jobs.index') }}"
                     class="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
                     Batal
                 </a>

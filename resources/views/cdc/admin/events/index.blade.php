@@ -10,7 +10,7 @@
             <h1 class="text-2xl font-bold text-gray-900">Kelola Event CDC</h1>
             <p class="text-gray-600 mt-1">Kelola event dan workshop untuk mahasiswa</p>
         </div>
-        <a href="{{ route('cdc.admin.events.create') }}" 
+        <a href="{{ route('admin.cdc.events.create') }}" 
             class="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -45,7 +45,7 @@
                 <button type="submit" class="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
                     Filter
                 </button>
-                <a href="{{ route('cdc.admin.events.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                <a href="{{ route('admin.cdc.events.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
                     Reset
                 </a>
             </div>
@@ -116,19 +116,19 @@
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex items-center justify-end gap-2">
-                                <a href="{{ route('cdc.admin.events.registrations', $event) }}" 
+                                <a href="{{ route('admin.cdc.events.registrations', $event) }}" 
                                     class="text-purple-600 hover:text-purple-900" title="Lihat Pendaftar">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                                     </svg>
                                 </a>
-                                <a href="{{ route('cdc.admin.events.edit', $event) }}" 
+                                <a href="{{ route('admin.cdc.events.edit', $event) }}" 
                                     class="text-blue-600 hover:text-blue-900" title="Edit">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                     </svg>
                                 </a>
-                                <form action="{{ route('cdc.admin.events.destroy', $event) }}" method="POST" 
+                                <form action="{{ route('admin.cdc.events.destroy', $event) }}" method="POST" 
                                     onsubmit="return confirm('Yakin ingin menghapus event ini?')" class="inline">
                                     @csrf
                                     @method('DELETE')

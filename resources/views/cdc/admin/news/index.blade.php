@@ -10,7 +10,7 @@
             <h1 class="text-2xl font-bold text-gray-900">Kelola Berita CDC</h1>
             <p class="text-gray-600 mt-1">Kelola artikel dan berita untuk mahasiswa</p>
         </div>
-        <a href="{{ route('cdc.admin.news.create') }}" 
+        <a href="{{ route('admin.cdc.news.create') }}" 
             class="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -43,7 +43,7 @@
                 <button type="submit" class="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
                     Filter
                 </button>
-                <a href="{{ route('cdc.admin.news.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                <a href="{{ route('admin.cdc.news.index') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
                     Reset
                 </a>
             </div>
@@ -109,7 +109,7 @@
                         <td class="px-6 py-4 text-right text-sm font-medium">
                             <div class="flex items-center justify-end gap-2">
                                 @if(!$article->is_published)
-                                    <form action="{{ route('cdc.admin.news.publish', $article) }}" method="POST" class="inline">
+                                    <form action="{{ route('admin.cdc.news.publish', $article) }}" method="POST" class="inline">
                                         @csrf
                                         <button type="submit" class="text-green-600 hover:text-green-900" title="Publish">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,13 +118,13 @@
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('cdc.admin.news.edit', $article) }}" 
+                                <a href="{{ route('admin.cdc.news.edit', $article) }}" 
                                     class="text-blue-600 hover:text-blue-900" title="Edit">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                     </svg>
                                 </a>
-                                <form action="{{ route('cdc.admin.news.destroy', $article) }}" method="POST" 
+                                <form action="{{ route('admin.cdc.news.destroy', $article) }}" method="POST" 
                                     onsubmit="return confirm('Yakin ingin menghapus berita ini?')" class="inline">
                                     @csrf
                                     @method('DELETE')
