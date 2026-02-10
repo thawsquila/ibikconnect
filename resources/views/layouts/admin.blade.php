@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         .sidebar-collapsed #sidebar-content { width: 4rem; }
@@ -128,9 +129,9 @@
                             <p class="text-sm font-medium text-gray-900 truncate">{{ auth()->user()->name }}</p>
                             <p class="text-xs text-gray-500 truncate">{{ ucfirst(str_replace('_', ' ', auth()->user()->role)) }}</p>
                         </div>
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" id="logout-form">
                             @csrf
-                            <button type="submit" class="text-gray-400 hover:text-gray-600 ml-2" title="Logout">
+                            <button type="button" onclick="confirmLogout()" class="text-gray-400 hover:text-gray-600 ml-2" title="Logout">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
                                 </svg>
@@ -193,6 +194,31 @@
     </div>
 
     <script>
+        // Logout Confirmation with SweetAlert2
+        function confirmLogout() {
+            Swal.fire({
+                title: 'Konfirmasi Logout',
+                html: 'Apakah Anda yakin ingin keluar dari admin panel?<br><small class="text-gray-500">Anda perlu login kembali untuk mengakses halaman ini.</small>',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc2626',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: '<i class="fas fa-sign-out-alt"></i> Ya, Logout',
+                cancelButtonText: 'Batal',
+                reverseButtons: true,
+                customClass: {
+                    popup: 'rounded-2xl',
+                    title: 'text-xl font-bold',
+                    confirmButton: 'rounded-lg px-5 py-2.5 font-medium',
+                    cancelButton: 'rounded-lg px-5 py-2.5 font-medium'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('logout-form').submit();
+                }
+            });
+        }
+
         // Sidebar Toggle
         document.addEventListener('DOMContentLoaded', function() {
             const sidebar = document.getElementById('sidebar');

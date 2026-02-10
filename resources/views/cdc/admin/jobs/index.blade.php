@@ -91,13 +91,23 @@
                             </form>
                         </td>
                         <td class="px-6 py-4 text-sm text-gray-500">{{ $job->views_count }}</td>
-                        <td class="px-6 py-4 text-right text-sm font-medium space-x-2">
-                            <a href="{{ route('admin.cdc.jobs.edit', $job) }}" class="text-[#8A4BE2] hover:text-[#7A3BD6]">Edit</a>
-                            <form method="POST" action="{{ route('admin.cdc.jobs.destroy', $job) }}" class="inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
-                            </form>
+                        <td class="px-6 py-4 text-right text-sm font-medium">
+                            <div class="flex items-center justify-end gap-2">
+                                <a href="{{ route('admin.cdc.jobs.edit', $job) }}" class="text-blue-600 hover:text-blue-900" title="Edit">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                    </svg>
+                                </a>
+                                <form method="POST" action="{{ route('admin.cdc.jobs.destroy', $job) }}" class="inline" onsubmit="return confirm('Yakin ingin menghapus lowongan ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900" title="Hapus">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @empty

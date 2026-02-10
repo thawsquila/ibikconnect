@@ -81,7 +81,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('admin.bei.events.store.legacy') }}" class="space-y-4">
+            <form method="POST" action="{{ route('admin.bei.events.store') }}" class="space-y-4">
                 @csrf
                 
                 <div>
@@ -160,8 +160,9 @@
                             @endif
                         </div>
                     </div>
-                    <form method="POST" action="{{ route('admin.bei.events.delete', $event) }}" class="ml-4">
+                    <form method="POST" action="{{ route('admin.bei.events.destroy', $event) }}" class="ml-4">
                         @csrf
+                        @method('DELETE')
                         <button type="submit" onclick="return confirm('Yakin ingin menghapus event ini?')"
                             class="text-red-600 hover:text-red-900" title="Hapus">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
