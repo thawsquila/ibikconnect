@@ -87,8 +87,12 @@
         <div class="space-y-6">
             <!-- Apply Card -->
             <div class="bg-linear-to-br from-purple-600 to-blue-600 rounded-xl p-6 text-white sticky top-24">
-                <h3 class="text-xl font-bold mb-4">Tertarik dengan posihref="mailto:{{ $job->contact_email }}" class="block w-full bg-white text-purple-600 font-bold py-3 px-4 rounded-lg hover:bg-purple-50 transition-colors text-center">
-                    Kirim Email
+                <h3 class="text-xl font-bold mb-4">Tertarik dengan posisi ini?</h3>
+                <p class="text-sm text-purple-100 mb-6">Segera kirimkan lamaran Anda sebelum batas waktu berakhir!</p>
+                
+                @if($job->application_url)
+                <a href="{{ $job->application_url }}" target="_blank" class="block w-full bg-white text-purple-600 font-bold py-3 px-4 rounded-lg hover:bg-purple-50 transition-colors text-center">
+                    Lamar Sekarang
                 </a>
                 @else
                 <a href="{{ route('cdc.contact') }}" class="block w-full bg-white text-purple-600 font-bold py-3 px-4 rounded-lg hover:bg-purple-50 transition-colors text-center">

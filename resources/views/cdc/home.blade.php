@@ -100,7 +100,7 @@
                 <h2 class="text-3xl font-bold text-gray-900">Info Lowongan Kerja & Magang</h2>
                 <p class="text-gray-600 mt-2">Temukan peluang karier terbaik untuk masa depanmu</p>
             </div>
-            <a href="#" class="hidden sm:inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2]">
+            <a href="{{ route('cdc.jobs') }}" class="hidden sm:inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#7A3BD6] transition-colors">
                 Lihat Semua
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -157,6 +157,12 @@
                 <h2 class="text-3xl font-bold text-gray-900">Agenda Kegiatan</h2>
                 <p class="text-gray-600 mt-2">Ikuti berbagai kegiatan pengembangan diri dan networking</p>
             </div>
+            <a href="{{ route('cdc.events') }}" class="hidden sm:inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#7A3BD6] transition-colors">
+                Lihat Semua
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
         <div class="card divide-y divide-gray-200">
             @foreach ([
@@ -213,7 +219,7 @@
                 <h2 class="text-3xl font-bold text-gray-900">Berita & Dokumentasi</h2>
                 <p class="text-gray-600 mt-2">Update terbaru seputar kegiatan dan prestasi mahasiswa</p>
             </div>
-            <a href="#" class="hidden sm:inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2]">
+            <a href="{{ route('cdc.news') }}" class="hidden sm:inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#7A3BD6] transition-colors">
                 Lihat Semua
                 <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

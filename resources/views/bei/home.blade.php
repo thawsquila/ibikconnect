@@ -281,9 +281,17 @@
 
     <!-- Academy Section: Wide Grid -->
     <section id="edukasi" class="max-w-360 mx-auto px-4 sm:px-8 lg:px-12">
-        <div class="text-center space-y-4 mb-16">
-            <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">Investment Academy</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Kami merancang kurikulum yang mudah dipahami bagi siapa saja yang ingin memulai perjalanan investasi mereka.</p>
+        <div class="flex items-center justify-between mb-16">
+            <div class="text-center flex-1">
+                <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">Investment Academy</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-4">Kami merancang kurikulum yang mudah dipahami bagi siapa saja yang ingin memulai perjalanan investasi mereka.</p>
+            </div>
+            <a href="{{ route('bei.educations') }}" class="hidden sm:inline-flex items-center text-sm font-bold text-[#8A4BE2] hover:text-[#7A3BD6] transition-colors whitespace-nowrap ml-4">
+                Lihat Semua
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
@@ -335,7 +343,7 @@
                     <h2 class="text-3xl font-extrabold text-gray-900">Galeri Kegiatan</h2>
                     <p class="text-gray-600 mt-1">Dokumentasi perjalanan literasi keuangan mahasiswa IBI.</p>
                 </div>
-                <a href="#" class="text-[#8A4BE2] font-black text-sm uppercase tracking-widest hover:text-[#8A4BE2]">Lihat Semua</a>
+                <a href="{{ route('bei.gallery') }}" class="text-[#8A4BE2] font-black text-sm uppercase tracking-widest hover:text-[#7A3BD6] transition-colors">Lihat Semua</a>
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
