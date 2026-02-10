@@ -15,7 +15,17 @@ class BEIController extends Controller
      */
     public function index()
     {
-        return view('bei.home');
+        // Get latest educations (3 items for home page)
+        $educations = BeiEducation::latest()
+            ->limit(3)
+            ->get();
+
+        // Get latest galleries (4 items for home page)
+        $galleries = BeiGallery::latest()
+            ->limit(4)
+            ->get();
+
+        return view('bei.home', compact('educations', 'galleries'));
     }
 
     /**

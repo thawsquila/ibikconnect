@@ -108,46 +108,48 @@
             </a>
         </div>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            @foreach ([
-                ['title' => 'Marketing Executive', 'company' => 'PT Digital Nusantara', 'location' => 'Jakarta', 'type' => 'Full-time', 'salary' => 'Rp 5-7 jt', 'logo_color' => 'bg-blue-500'],
-                ['title' => 'Software Engineer', 'company' => 'Tech Innovate Indonesia', 'location' => 'Bogor', 'type' => 'Full-time', 'salary' => 'Rp 8-12 jt', 'logo_color' => 'bg-purple-500'],
-                ['title' => 'Graphic Designer', 'company' => 'Creative Studio', 'location' => 'Remote', 'type' => 'Freelance', 'salary' => 'Rp 4-6 jt', 'logo_color' => 'bg-pink-500'],
-                ['title' => 'Data Analyst', 'company' => 'Analytics Corp', 'location' => 'Bandung', 'type' => 'Full-time', 'salary' => 'Rp 6-9 jt', 'logo_color' => 'bg-green-500'],
-                ['title' => 'Content Writer', 'company' => 'Media Group', 'location' => 'Jakarta', 'type' => 'Part-time', 'salary' => 'Rp 3-5 jt', 'logo_color' => 'bg-yellow-500'],
-                ['title' => 'Business Analyst', 'company' => 'Consulting Partners', 'location' => 'Surabaya', 'type' => 'Full-time', 'salary' => 'Rp 7-10 jt', 'logo_color' => 'bg-indigo-500']
-            ] as $job)
+            @forelse($jobs as $job)
             <article class="card p-6 hover:scale-[1.02] transition-transform group">
                 <div class="flex items-start justify-between mb-4">
-                    <div class="w-12 h-12 {{ $job['logo_color'] }} rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
-                        {{ substr($job['company'], 0, 1) }}
+                    <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
+                        {{ substr($job->company_name, 0, 1) }}
                     </div>
-                    <span class="px-3 py-1 bg-blue-50 text-[#8A4BE2] text-xs font-medium rounded-full">{{ $job['type'] }}</span>
+                    <span class="px-3 py-1 bg-blue-50 text-[#8A4BE2] text-xs font-medium rounded-full">{{ ucfirst($job->type) }}</span>
                 </div>
-                <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $job['title'] }}</h3>
-                <p class="text-sm text-gray-600 mb-4">{{ $job['company'] }}</p>
+                <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $job->title }}</h3>
+                <p class="text-sm text-gray-600 mb-4">{{ $job->company_name }}</p>
                 <div class="flex items-center gap-4 text-xs text-gray-500 mb-4">
                     <span class="flex items-center">
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        {{ $job['location'] }}
+                        {{ $job->location }}
                     </span>
+                    @if($job->salary_range)
                     <span class="flex items-center">
                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        {{ $job['salary'] }}
+                        {{ $job->salary_range }}
                     </span>
+                    @endif
                 </div>
-                <a href="#" class="inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2] group-hover:gap-2 transition-all">
+                <a href="{{ route('cdc.jobs.detail', $job) }}" class="inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2] group-hover:gap-2 transition-all">
                     Lihat Detail
                     <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                 </a>
             </article>
-            @endforeach
+            @empty
+            <div class="col-span-3 text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <p class="mt-2 text-sm text-gray-500">Belum ada lowongan tersedia</p>
+            </div>
+            @endforelse
         </div>
     </section>
 
@@ -165,51 +167,61 @@
             </a>
         </div>
         <div class="card divide-y divide-gray-200">
-            @foreach ([
-                ['title' => 'Benchmarking ke Perusahaan Startup', 'date' => '15 Februari 2026', 'time' => '09:00 - 15:00', 'location' => 'Jakarta', 'seats' => '30 kursi tersisa', 'icon_color' => 'bg-blue-100 text-blue-600'],
-                ['title' => 'Seminar Karier: Membangun Personal Branding', 'date' => '22 Februari 2026', 'time' => '13:00 - 16:00', 'location' => 'Auditorium IBI', 'seats' => '50 kursi tersisa', 'icon_color' => 'bg-purple-100 text-purple-600'],
-                ['title' => 'Workshop: Teknik Membuat CV yang Menarik', 'date' => '28 Februari 2026', 'time' => '10:00 - 12:00', 'location' => 'Lab Komputer 2', 'seats' => '25 kursi tersisa', 'icon_color' => 'bg-green-100 text-green-600'],
-                ['title' => 'Job Fair IBI 2026', 'date' => '5 Maret 2026', 'time' => '08:00 - 17:00', 'location' => 'Lapangan IBI', 'seats' => 'Unlimited', 'icon_color' => 'bg-orange-100 text-orange-600']
-            ] as $event)
+            @forelse($events as $event)
             <div class="p-6 hover:bg-gray-50 transition-colors group">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="flex gap-4">
-                        <div class="shrink-0 w-14 h-14 {{ $event['icon_color'] }} rounded-xl flex items-center justify-center shadow-sm">
+                        <div class="shrink-0 w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shadow-sm">
                             <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
                         </div>
                         <div class="flex-1">
-                            <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $event['title'] }}</h3>
+                            <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $event->title }}</h3>
                             <div class="flex flex-wrap gap-4 text-sm text-gray-600">
+                                @if($event->starts_at)
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    {{ $event['date'] }}
+                                    {{ $event->starts_at->format('d F Y') }}
                                 </span>
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    {{ $event['time'] }}
+                                    {{ $event->starts_at->format('H:i') }} WIB
                                 </span>
+                                @endif
+                                @if($event->location)
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     </svg>
-                                    {{ $event['location'] }}
+                                    {{ $event->location }}
                                 </span>
+                                @endif
                             </div>
-                            <p class="text-xs text-green-600 font-medium mt-2">{{ $event['seats'] }}</p>
+                            @if($event->max_participants)
+                            <p class="text-xs text-green-600 font-medium mt-2">
+                                {{ $event->max_participants - $event->registered_count }} kursi tersisa
+                            </p>
+                            @endif
                         </div>
                     </div>
-                    <a href="#daftar" class="inline-flex items-center justify-center text-white bg-[#8A4BE2] hover:bg-[#7A3BD6] whitespace-nowrap self-start sm:self-center px-4 py-2 rounded-lg transition-all shadow-sm hover:shadow-md">
+                    <a href="{{ route('cdc.events.detail', $event) }}" class="inline-flex items-center justify-center text-white bg-[#8A4BE2] hover:bg-[#7A3BD6] whitespace-nowrap self-start sm:self-center px-4 py-2 rounded-lg transition-all shadow-sm hover:shadow-md">
                         Daftar Sekarang
                     </a>
                 </div>
             </div>
-            @endforeach
+            @empty
+            <div class="p-12 text-center text-gray-500">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <p class="mt-2 text-sm">Belum ada event mendatang</p>
+            </div>
+            @endforelse
         </div>
     </section>
 
@@ -227,19 +239,15 @@
             </a>
         </div>
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            @foreach ([
-                ['title' => 'Mahasiswa IBI Raih Juara 1 Kompetisi Bisnis Nasional', 'date' => '20 Jan 2026', 'category' => 'Prestasi', 'image_color' => 'from-blue-400 to-blue-600'],
-                ['title' => 'Kunjungan Industri ke PT Telkom Indonesia', 'date' => '18 Jan 2026', 'category' => 'Kegiatan', 'image_color' => 'from-purple-400 to-purple-600'],
-                ['title' => 'Workshop Digital Marketing bersama Google', 'date' => '15 Jan 2026', 'category' => 'Workshop', 'image_color' => 'from-green-400 to-green-600'],
-                ['title' => 'Alumni IBI Berbagi Pengalaman Berkarier di Startup', 'date' => '12 Jan 2026', 'category' => 'Alumni', 'image_color' => 'from-orange-400 to-orange-600'],
-                ['title' => 'Seminar Nasional: Transformasi Digital di Era 5.0', 'date' => '10 Jan 2026', 'category' => 'Seminar', 'image_color' => 'from-pink-400 to-pink-600'],
-                ['title' => 'Peluncuran Program Magang Bersertifikat', 'date' => '8 Jan 2026', 'category' => 'Program', 'image_color' => 'from-indigo-400 to-indigo-600']
-            ] as $news)
+            @forelse($news as $article)
             <article class="card overflow-hidden group hover:scale-[1.02] transition-transform">
-                <div class="aspect-video bg-linear-to-br {{ $news['image_color'] }} relative overflow-hidden">
+                <div class="aspect-video bg-linear-to-br from-purple-400 to-blue-600 relative overflow-hidden">
+                    @if($article->featured_image)
+                        <img src="{{ Storage::url($article->featured_image) }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+                    @endif
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                     <div class="absolute top-4 left-4">
-                        <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-medium rounded-full">{{ $news['category'] }}</span>
+                        <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-medium rounded-full">Berita</span>
                     </div>
                     <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                         <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
@@ -255,11 +263,11 @@
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        {{ $news['date'] }}
+                        {{ $article->published_at ? $article->published_at->format('d M Y') : $article->created_at->format('d M Y') }}
                     </div>
-                    <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#8A4BE2] transition-colors">{{ $news['title'] }}</h3>
-                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">Baca selengkapnya tentang kegiatan dan pencapaian terbaru dari mahasiswa dan civitas akademika IBI Kesatuan Bogor.</p>
-                    <a href="#" class="inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2]">
+                    <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-[#8A4BE2] transition-colors">{{ $article->title }}</h3>
+                    <p class="text-sm text-gray-600 line-clamp-2 mb-4">{{ Str::limit(strip_tags($article->content), 100) }}</p>
+                    <a href="{{ route('cdc.news.detail', $article) }}" class="inline-flex items-center text-sm font-medium text-[#8A4BE2] hover:text-[#8A4BE2]">
                         Baca Selengkapnya
                         <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -267,7 +275,14 @@
                     </a>
                 </div>
             </article>
-            @endforeach
+            @empty
+            <div class="col-span-3 text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                </svg>
+                <p class="mt-2 text-sm text-gray-500">Belum ada berita tersedia</p>
+            </div>
+            @endforelse
         </div>
     </section>
 

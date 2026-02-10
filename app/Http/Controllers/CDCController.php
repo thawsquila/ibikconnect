@@ -15,7 +15,26 @@ class CDCController extends Controller
      */
     public function index()
     {
-        return view('cdc.home');
+        // Get latest jobs (6 items for home page)
+        $jobs = CdcJobListing::active()
+            ->latest()
+            ->limit(6)
+            ->get();
+
+        // Get upcoming events (4 items for home page)
+        $events = CdcEvent::active()
+            ->where('starts_at', '>=', now())
+            ->orderBy('starts_at', 'asc')
+            ->limit(4)
+            ->get();
+
+        // Get latest news (6 items for home page)
+        $news = CdcNews::published()
+            ->latest('published_at')
+            ->limit(6)
+            ->get();
+
+        return view('cdc.home', compact('jobs', 'events', 'news'));
     }
 
     /**

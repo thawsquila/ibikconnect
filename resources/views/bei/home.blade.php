@@ -295,44 +295,34 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Course 1 -->
+            @forelse($educations as $index => $education)
             <div class="bg-white border-2 border-gray-50 rounded-3xl p-8 hover:border-blue-600/20 hover:shadow-2xl hover:shadow-blue-600/5 transition-all group">
-                <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                <div class="w-14 h-14 {{ ['bg-blue-50 text-blue-600', 'bg-green-50 text-green-600', 'bg-purple-50 text-purple-600'][$index % 3] }} rounded-2xl flex items-center justify-center mb-8 group-hover:{{ ['bg-blue-600', 'bg-green-600', 'bg-purple-600'][$index % 3] }} group-hover:text-white transition-colors">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        @if($index % 3 == 0)
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        @elseif($index % 3 == 1)
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        @else
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/>
+                        @endif
+                    </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Dasar Saham</h3>
-                <p class="text-gray-600 leading-relaxed mb-8">Memahami apa itu saham, cara kerja bursa efek, dan bagaimana perusahaan mendapatkan modal.</p>
-                <a href="#" class="inline-flex items-center text-blue-600 font-bold hover:gap-3 transition-all">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">{{ $education->title }}</h3>
+                <p class="text-gray-600 leading-relaxed mb-8">{{ Str::limit(strip_tags($education->content), 100) }}</p>
+                <a href="{{ route('bei.educations.detail', $education) }}" class="inline-flex items-center {{ ['text-blue-600', 'text-green-600', 'text-purple-600'][$index % 3] }} font-bold hover:gap-3 transition-all">
                     Selengkapnya
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
                 </a>
             </div>
-
-            <!-- Course 2 -->
-            <div class="bg-white border-2 border-gray-50 rounded-3xl p-8 hover:border-blue-600/20 hover:shadow-2xl hover:shadow-blue-600/5 transition-all group">
-                <div class="w-14 h-14 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-green-600 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Analisis Fundamental</h3>
-                <p class="text-gray-600 leading-relaxed mb-8">Belajar cara membaca laporan keuangan perusahaan dan menilai kesehatan bisnis secara objektif.</p>
-                <a href="#" class="inline-flex items-center text-green-600 font-bold hover:gap-3 transition-all">
-                    Selengkapnya
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                </a>
+            @empty
+            <div class="col-span-3 text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                <p class="mt-2 text-sm text-gray-500">Belum ada materi edukasi tersedia</p>
             </div>
-
-            <!-- Course 3 -->
-            <div class="bg-white border-2 border-gray-50 rounded-3xl p-8 hover:border-blue-600/20 hover:shadow-2xl hover:shadow-blue-600/5 transition-all group">
-                <div class="w-14 h-14 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"/></svg>
-                </div>
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Analisis Teknikal</h3>
-                <p class="text-gray-600 leading-relaxed mb-8">Menggunakan grafik harga dan indikator untuk menentukan momentum beli dan jual yang tepat.</p>
-                <a href="#" class="inline-flex items-center text-purple-600 font-bold hover:gap-3 transition-all">
-                    Selengkapnya
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
+            @endforelse
         </div>
     </section>
 
@@ -347,18 +337,26 @@
             </div>
 
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1611974717434-31012979bb18?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700">
+                @forelse($galleries as $gallery)
+                <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md hover:shadow-xl transition-shadow group">
+                    @if($gallery->image_path)
+                        <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    @else
+                        <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-purple-400 to-blue-600">
+                            <svg class="w-12 h-12 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                    @endif
                 </div>
-                <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1591115765373-520b7a428242?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700">
+                @empty
+                <div class="col-span-4 text-center py-12">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    <p class="mt-2 text-sm text-gray-500">Belum ada foto galeri tersedia</p>
                 </div>
-                <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700">
-                </div>
-                <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md">
-                    <img src="https://images.unsplash.com/photo-1579532536935-619928decd08?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700">
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
