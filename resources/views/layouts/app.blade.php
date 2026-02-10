@@ -23,16 +23,16 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center gap-1">
                     @if (request()->is('bei*'))
-                        <a href="{{ route('bei.profile') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Profil</a>
-                        <a href="{{ route('bei.educations') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Edukasi</a>
-                        <a href="{{ route('bei.events') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Event</a>
-                        <a href="{{ route('bei.gallery') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Galeri</a>
-                        <a href="{{ route('bei.registration') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Pendaftaran</a>
+                        <a href="{{ route('bei.profile') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.profile') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50' }}">Profil</a>
+                        <a href="{{ route('bei.educations') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.educations*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50' }}">Edukasi</a>
+                        <a href="{{ route('bei.events') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.events*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50' }}">Event</a>
+                        <a href="{{ route('bei.gallery') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.gallery') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50' }}">Galeri</a>
+                        <a href="{{ route('bei.registration') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.registration*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:text-purple-600 hover:bg-purple-50' }}">Pendaftaran</a>
                     @else
-                        <a href="{{ route('cdc.jobs') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Lowongan</a>
-                        <a href="{{ route('cdc.events') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Agenda</a>
-                        <a href="{{ route('cdc.news') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Berita</a>
-                        <a href="{{ route('cdc.contact') }}" class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all">Kontak</a>
+                        <a href="{{ route('cdc.jobs') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.jobs*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' }}">Lowongan</a>
+                        <a href="{{ route('cdc.events') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.events*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' }}">Agenda</a>
+                        <a href="{{ route('cdc.news') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.news*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' }}">Berita</a>
+                        <a href="{{ route('cdc.contact') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.contact') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' }}">Kontak</a>
                     @endif
                 </nav>
 
@@ -68,16 +68,16 @@
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 bg-white">
             <nav class="px-4 py-3 space-y-1">
                 @if (request()->is('bei*'))
-                    <a href="{{ route('bei.profile') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Profil</a>
-                    <a href="{{ route('bei.educations') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Edukasi</a>
-                    <a href="{{ route('bei.events') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Event</a>
-                    <a href="{{ route('bei.gallery') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Galeri</a>
-                    <a href="{{ route('bei.registration') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Pendaftaran</a>
+                    <a href="{{ route('bei.profile') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.profile') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600' }}">Profil</a>
+                    <a href="{{ route('bei.educations') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.educations*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600' }}">Edukasi</a>
+                    <a href="{{ route('bei.events') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.events*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600' }}">Event</a>
+                    <a href="{{ route('bei.gallery') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.gallery') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600' }}">Galeri</a>
+                    <a href="{{ route('bei.registration') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('bei.registration*') ? 'bg-purple-100 text-purple-700' : 'text-gray-700 hover:bg-purple-50 hover:text-purple-600' }}">Pendaftaran</a>
                 @else
-                    <a href="{{ route('cdc.jobs') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Lowongan</a>
-                    <a href="{{ route('cdc.events') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Agenda</a>
-                    <a href="{{ route('cdc.news') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Berita</a>
-                    <a href="{{ route('cdc.contact') }}" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-purple-50 hover:text-purple-600 rounded-lg">Kontak</a>
+                    <a href="{{ route('cdc.jobs') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.jobs*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600' }}">Lowongan</a>
+                    <a href="{{ route('cdc.events') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.events*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600' }}">Agenda</a>
+                    <a href="{{ route('cdc.news') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.news*') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600' }}">Berita</a>
+                    <a href="{{ route('cdc.contact') }}" class="block px-4 py-2 text-sm font-medium rounded-lg transition-all {{ request()->routeIs('cdc.contact') ? 'bg-blue-100 text-blue-700' : 'text-gray-700 hover:bg-blue-50 hover:text-blue-600' }}">Kontak</a>
                 @endif
             </nav>
         </div>
