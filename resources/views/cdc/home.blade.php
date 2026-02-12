@@ -69,24 +69,30 @@
                 <!-- Company Logos -->
                 <div class="pt-12">
                     <p class="text-sm text-gray-500 mb-6 font-medium">Mitra Afiliasi</p>
-                    <div class="flex flex-wrap items-center justify-center gap-8">
+                    <div class="relative overflow-hidden rounded-3xl bg-white/50 border border-white/60 px-6 py-10">
+                        <div class="pointer-events-none absolute -top-10 -left-10 w-48 h-48 rounded-full bg-[#F1E9FB] blur-2xl opacity-80"></div>
+                        <div class="pointer-events-none absolute -bottom-16 -right-16 w-72 h-72 rounded-full bg-[#D7C2F5] blur-3xl opacity-70"></div>
+                        <div class="pointer-events-none absolute top-1/2 -right-10 w-40 h-40 rounded-full bg-[#A67CE6]/30 blur-2xl opacity-70"></div>
+
+                        <div class="relative z-10 flex flex-wrap items-center justify-center gap-8">
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/BEI.jpg') }}" alt="BEI" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/Jobstreet.png') }}" alt="JobStreetbySeek" class="w-full h-full object-contain">
                         </div>
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/IAI-1.jpg') }}" alt="IAI" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/stiuniv.png') }}" alt="Set West Negros University Inc In, The Philippines" class="w-full h-full object-contain">
                         </div>
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/CPSSOFT-ACCURATE-4-1.jpg') }}" alt="Accurate" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/langham.png') }}" alt="The Langham Jakarta" class="w-full h-full object-contain">
                         </div>
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/AsiaPacificUniversityOfTechnologyInnovation.jpg') }}" alt="APU" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/songklauniv.png') }}" alt="Prince of Songkla University Thailand" class="w-full h-full object-contain">
                         </div>
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/TICMI.png') }}" alt="TICMI" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/kai.png') }}" alt="PT. Kereta Commuter Indonesia" class="w-full h-full object-contain">
                         </div>
                         <div class="w-24 h-16 grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100">
-                            <img src="{{ asset('mitra/8139.jpg') }}" alt="Partner" class="w-full h-full object-contain">
+                            <img src="{{ asset('mitra/mutualplus.png') }}" alt="PT. Mutualplus Global Resources" class="w-full h-full object-contain">
+                        </div>
                         </div>
                     </div>
                 </div>

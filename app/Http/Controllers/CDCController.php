@@ -23,8 +23,8 @@ class CDCController extends Controller
 
         // Get upcoming events (4 items for home page)
         $events = CdcEvent::active()
-            ->where('starts_at', '>=', now())
-            ->orderBy('starts_at', 'asc')
+            ->where('start_date', '>=', now())
+            ->orderBy('start_date', 'asc')
             ->limit(4)
             ->get();
 

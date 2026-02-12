@@ -63,6 +63,14 @@ class CdcEvent extends Model
     }
 
     /**
+     * Scope untuk event yang aktif (alias published)
+     */
+    public function scopeActive($query)
+    {
+        return $this->scopePublished($query);
+    }
+
+    /**
      * Scope untuk event yang masih buka pendaftaran
      */
     public function scopeOpenRegistration($query)
