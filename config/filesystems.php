@@ -47,6 +47,15 @@ return [
             'report' => false,
         ],
 
+        'public_root' => [
+            'driver' => 'local',
+            'root' => public_path(),
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
@@ -90,13 +99,13 @@ return [
             'jobs' => 'cdc/jobs',
             'events' => 'cdc/events',
             'news' => 'cdc/news',
-            'galleries' => 'cdc/galleries',
+            'galleries' => 'galleries/cdc',
             'partners' => 'cdc/partners',
         ],
         'bei' => [
             'events' => 'bei/events',
             'educations' => 'bei/educations',
-            'galleries' => 'bei/galleries',
+            'galleries' => 'galleries/bei',
         ],
         'users' => 'users/avatars',
     ],

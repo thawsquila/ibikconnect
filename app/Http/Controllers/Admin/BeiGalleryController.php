@@ -43,7 +43,7 @@ class BeiGalleryController extends Controller
         try {
             // Handle image upload
             if ($request->hasFile('image_path')) {
-                $validated['image_path'] = $request->file('image_path')->store('bei/galleries', 'public');
+                $validated['image_path'] = $request->file('image_path')->store('galleries/bei', 'public_root');
             }
 
             BeiGallery::create($validated);
@@ -71,31 +71,56 @@ class BeiGalleryController extends Controller
      */
     public function update(Request $request, BeiGallery $gallery)
     {
-        $validated = $request->validate([
-            'title' => ['nullable', 'string', 'max:255'],
-            'image_path' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
-        ]);
+        $action = $request->input('action');
 
-        try {
-            // Handle image upload if present
-            if ($request->hasFile('image_path')) {
-                // Delete old image
-                if ($gallery->image_path) {
-                    \Storage::disk('public')->delete($gallery->image_path);
-                }
-                $validated['image_path'] = $request->file('image_path')->store('bei/galleries', 'public');
+        // Action 1: Update Title Only (tidak menghapus foto)
+        if ($action === 'update_title') {
+            $validated = $request->validate([
+                'title' => ['nullable', 'string', 'max:255'],
+            ]);
+
+            try {
+                $gallery->title = $request->input('title');
+                $gallery->save();
+
+                return redirect()
+                    ->route('admin.bei.galleries.index')
+                    ->with('success', 'Judul foto berhasil diupdate!');
+            } catch (\Exception $e) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'Gagal mengupdate judul: ' . $e->getMessage());
             }
-
-            $gallery->update($validated);
-
-            return redirect()
-                ->route('admin.bei.galleries.index')
-                ->with('success', 'Foto berhasil diupdate!');
-        } catch (\Exception $e) {
-            return back()
-                ->withInput()
-                ->with('error', 'Gagal mengupdate foto: ' . $e->getMessage());
         }
+
+        // Action 2: Change Image (mengganti foto lama dengan foto baru)
+        if ($action === 'change_image') {
+            $validated = $request->validate([
+                'image_path' => ['required', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
+            ]);
+
+            try {
+                // Delete old image
+                if ($gallery->image_path && \Storage::disk('public_root')->exists($gallery->image_path)) {
+                    \Storage::disk('public_root')->delete($gallery->image_path);
+                }
+
+                // Upload new image
+                $gallery->image_path = $request->file('image_path')->store('galleries/bei', 'public_root');
+                $gallery->save();
+
+                return redirect()
+                    ->route('admin.bei.galleries.index')
+                    ->with('success', 'Foto berhasil diganti!');
+            } catch (\Exception $e) {
+                return back()
+                    ->withInput()
+                    ->with('error', 'Gagal mengganti foto: ' . $e->getMessage());
+            }
+        }
+
+        // Fallback jika action tidak dikenali
+        return back()->with('error', 'Action tidak valid');
     }
 
     /**
@@ -106,7 +131,7 @@ class BeiGalleryController extends Controller
         try {
             // Delete image
             if ($gallery->image_path) {
-                \Storage::disk('public')->delete($gallery->image_path);
+                \Storage::disk('public_root')->delete($gallery->image_path);
             }
 
             $gallery->delete();

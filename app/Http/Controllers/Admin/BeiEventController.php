@@ -42,9 +42,11 @@ class BeiEventController extends Controller
             'location' => ['nullable', 'string', 'max:255'],
             'max_participants' => ['nullable', 'integer', 'min:1'],
             'banner_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:3072'],
-            'is_published' => ['boolean'],
-            'is_registration_open' => ['boolean'],
         ]);
+
+        // Handle boolean fields explicitly
+        $validated['is_published'] = $request->has('is_published');
+        $validated['is_registration_open'] = $request->has('is_registration_open');
 
         try {
             // Handle image upload if present
@@ -84,9 +86,11 @@ class BeiEventController extends Controller
             'location' => ['nullable', 'string', 'max:255'],
             'max_participants' => ['nullable', 'integer', 'min:1'],
             'banner_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:3072'],
-            'is_published' => ['boolean'],
-            'is_registration_open' => ['boolean'],
         ]);
+
+        // Handle boolean fields explicitly
+        $validated['is_published'] = $request->has('is_published');
+        $validated['is_registration_open'] = $request->has('is_registration_open');
 
         try {
             // Handle image upload if present

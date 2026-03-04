@@ -21,7 +21,7 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         @foreach($galleries as $gallery)
         <div class="group relative aspect-square rounded-xl overflow-hidden bg-gray-200 hover:shadow-xl transition-all cursor-pointer">
-            <img src="{{ asset('storage/' . $gallery->image_path) }}" 
+            <img src="{{ asset($gallery->image_path) }}" 
                  alt="{{ $gallery->title ?? 'Gallery BEI' }}" 
                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
             
