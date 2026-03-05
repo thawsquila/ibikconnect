@@ -30,7 +30,7 @@
                     name="title" 
                     id="title" 
                     value="{{ old('title', $education->title) }}"
-                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('title') border-red-500 @enderror"
+                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('title') @enderror"
                     placeholder="Masukkan judul materi edukasi"
                     required
                 >
@@ -48,7 +48,7 @@
                     name="content" 
                     id="content" 
                     rows="12"
-                    class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('content') border-red-500 @enderror"
+                    class="w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent @error('content') border-red-500 @enderror"
                     placeholder="Masukkan konten materi edukasi..."
                 >{{ old('content', $education->content) }}</textarea>
                 @error('content')
@@ -59,18 +59,15 @@
 
             <!-- Action Buttons -->
             <div class="flex items-center justify-between pt-4 border-t border-gray-200">
-                <form action="{{ route('admin.bei.educations.destroy', $education) }}" method="POST" 
-                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus materi ini?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" 
-                        class="px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                        </svg>
-                        Hapus
-                    </button>
-                </form>
+                <button 
+                    type="button"
+                    onclick="if(confirm('Apakah Anda yakin ingin menghapus materi ini?')) document.getElementById('delete-form').submit();"
+                    class="px-6 py-2.5 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                    Hapus
+                </button>
 
                 <div class="flex items-center gap-3">
                     <a href="{{ route('admin.bei.educations.index') }}" 
@@ -89,4 +86,10 @@
         </form>
     </div>
 </div>
+
+{{-- Hidden Delete Form --}}
+<form id="delete-form" action="{{ route('admin.bei.educations.destroy', $education) }}" method="POST" class="hidden">
+    @csrf
+    @method('DELETE')
+</form>
 @endsection
