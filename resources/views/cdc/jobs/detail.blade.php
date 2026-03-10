@@ -23,9 +23,15 @@
             <!-- Job Header -->
             <div class="bg-white rounded-xl border border-gray-200 p-8">
                 <div class="flex items-start gap-6 mb-6">
-                    <div class="w-16 h-16 bg-linear-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shrink-0">
-                        {{ substr($job->company_name, 0, 1) }}
-                    </div>
+                    @if($job->company_logo)
+                        <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg shrink-0 border border-gray-100 overflow-hidden">
+                            <img src="{{ Storage::url($job->company_logo) }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
+                        </div>
+                    @else
+                        <div class="w-16 h-16 bg-linear-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shrink-0">
+                            {{ substr($job->company_name, 0, 1) }}
+                        </div>
+                    @endif
                     <div class="flex-1">
                         <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ $job->title }}</h1>
                         <p class="text-lg text-gray-600 mb-3">{{ $job->company_name }}</p>

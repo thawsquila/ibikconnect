@@ -22,8 +22,8 @@
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         @foreach($news as $item)
         <article class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all group">
-            @if($item->image)
-            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+            @if($item->featured_image)
+            <img src="{{ Storage::url($item->featured_image) }}" alt="{{ $item->title }}" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
             @else
             <div class="w-full h-48 bg-gradient-to-br from-green-400 to-blue-500"></div>
             @endif

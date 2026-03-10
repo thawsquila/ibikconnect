@@ -23,11 +23,19 @@
         <article class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all group">
             <div class="md:flex">
                 <!-- Event Image/Date -->
-                <div class="md:w-48 bg-linear-to-br from-blue-500 to-purple-500 p-8 flex flex-col items-center justify-center text-white shrink-0">
-                    <div class="text-5xl font-bold">{{ $event->start_date->format('d') }}</div>
-                    <div class="text-lg font-semibold">{{ $event->start_date->format('M Y') }}</div>
-                    @if($event->is_registration_open)
-                    <span class="mt-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold rounded-full">OPEN</span>
+                <div class="md:w-48 shrink-0">
+                    @if($event->banner_image)
+                        <div class="w-full h-full min-h-[160px]">
+                            <img src="{{ Storage::url($event->banner_image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                        </div>
+                    @else
+                        <div class="h-full min-h-[160px] bg-linear-to-br from-blue-500 to-purple-500 p-8 flex flex-col items-center justify-center text-white">
+                            <div class="text-5xl font-bold">{{ $event->start_date->format('d') }}</div>
+                            <div class="text-lg font-semibold">{{ $event->start_date->format('M Y') }}</div>
+                            @if($event->is_registration_open)
+                            <span class="mt-4 px-3 py-1 bg-white/20 backdrop-blur-sm text-xs font-bold rounded-full">OPEN</span>
+                            @endif
+                        </div>
                     @endif
                 </div>
 

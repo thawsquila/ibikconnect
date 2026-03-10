@@ -66,7 +66,7 @@ class CdcNewsController extends Controller
             $this->newsService->create($validated);
 
             return redirect()
-                ->route('cdc.admin.news.index')
+                ->route('admin.cdc.news.index')
                 ->with('success', 'Berita berhasil ditambahkan!');
         } catch (\Exception $e) {
             return back()
@@ -105,7 +105,7 @@ class CdcNewsController extends Controller
             $this->newsService->update($news, $validated);
 
             return redirect()
-                ->route('cdc.admin.news.index')
+                ->route('admin.cdc.news.index')
                 ->with('success', 'Berita berhasil diupdate!');
         } catch (\Exception $e) {
             return back()
@@ -123,7 +123,7 @@ class CdcNewsController extends Controller
             $this->newsService->delete($news);
 
             return redirect()
-                ->route('cdc.admin.news.index')
+                ->route('admin.cdc.news.index')
                 ->with('success', 'Berita berhasil dihapus!');
         } catch (\Exception $e) {
             return back()

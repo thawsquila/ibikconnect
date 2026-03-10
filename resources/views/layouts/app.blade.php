@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('LOGO_IBIK.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('LOGO_IBIK.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('LOGO_IBIK.png') }}">
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-linear-to-br from-gray-50 via-blue-50/30 to-gray-50 text-gray-900 antialiased">

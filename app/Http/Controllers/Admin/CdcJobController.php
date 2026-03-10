@@ -54,7 +54,7 @@ class CdcJobController extends Controller
             $this->jobService->create($request->validated());
 
             return redirect()
-                ->route('cdc.admin.jobs.index')
+                ->route('admin.cdc.jobs.index')
                 ->with('success', 'Lowongan kerja berhasil ditambahkan!');
         } catch (\Exception $e) {
             return back()
@@ -80,7 +80,7 @@ class CdcJobController extends Controller
             $this->jobService->update($job, $request->validated());
 
             return redirect()
-                ->route('cdc.admin.jobs.index')
+                ->route('admin.cdc.jobs.index')
                 ->with('success', 'Lowongan kerja berhasil diupdate!');
         } catch (\Exception $e) {
             return back()
@@ -98,7 +98,7 @@ class CdcJobController extends Controller
             $this->jobService->delete($job);
 
             return redirect()
-                ->route('cdc.admin.jobs.index')
+                ->route('admin.cdc.jobs.index')
                 ->with('success', 'Lowongan kerja berhasil dihapus!');
         } catch (\Exception $e) {
             return back()

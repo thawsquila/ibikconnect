@@ -55,7 +55,7 @@ class CdcEventController extends Controller
             $this->eventService->create($request->validated());
 
             return redirect()
-                ->route('cdc.admin.events.index')
+                ->route('admin.cdc.events.index')
                 ->with('success', 'Event berhasil ditambahkan!');
         } catch (\Exception $e) {
             return back()
@@ -81,7 +81,7 @@ class CdcEventController extends Controller
             $this->eventService->update($event, $request->validated());
 
             return redirect()
-                ->route('cdc.admin.events.index')
+                ->route('admin.cdc.events.index')
                 ->with('success', 'Event berhasil diupdate!');
         } catch (\Exception $e) {
             return back()
@@ -99,7 +99,7 @@ class CdcEventController extends Controller
             $this->eventService->delete($event);
 
             return redirect()
-                ->route('cdc.admin.events.index')
+                ->route('admin.cdc.events.index')
                 ->with('success', 'Event berhasil dihapus!');
         } catch (\Exception $e) {
             return back()

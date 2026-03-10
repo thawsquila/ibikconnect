@@ -42,9 +42,15 @@
         @foreach($jobs as $job)
         <article class="bg-white rounded-xl border border-gray-200 p-6 hover:shadow-lg hover:border-purple-200 transition-all group">
             <div class="flex items-start justify-between mb-4">
-                <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
-                    {{ substr($job->company_name, 0, 1) }}
-                </div>
+                @if($job->company_logo)
+                    <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md shrink-0 border border-gray-100 overflow-hidden">
+                        <img src="{{ Storage::url($job->company_logo) }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
+                    </div>
+                @else
+                    <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
+                        {{ substr($job->company_name, 0, 1) }}
+                    </div>
+                @endif
                 <span class="px-3 py-1 bg-purple-50 text-purple-700 text-xs font-medium rounded-full">
                     {{ ucfirst($job->job_type) }}
                 </span>

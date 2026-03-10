@@ -117,9 +117,15 @@
             @forelse($jobs as $job)
             <article class="card p-6 hover:scale-[1.02] transition-transform group">
                 <div class="flex items-start justify-between mb-4">
-                    <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
-                        {{ substr($job->company_name, 0, 1) }}
-                    </div>
+                    @if($job->company_logo)
+                        <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md shrink-0 border border-gray-100 overflow-hidden">
+                            <img src="{{ Storage::url($job->company_logo) }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
+                        </div>
+                    @else
+                        <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
+                            {{ substr($job->company_name, 0, 1) }}
+                        </div>
+                    @endif
                     <span class="px-3 py-1 bg-blue-50 text-[#8A4BE2] text-xs font-medium rounded-full">{{ ucfirst($job->type) }}</span>
                 </div>
                 <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $job->title }}</h3>
@@ -177,26 +183,32 @@
             <div class="p-6 hover:bg-gray-50 transition-colors group">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="flex gap-4">
-                        <div class="shrink-0 w-14 h-14 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center shadow-sm">
-                            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                        </div>
+                        @if($event->banner_image)
+                            <div class="shrink-0 w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden">
+                                <img src="{{ Storage::url($event->banner_image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                            </div>
+                        @else
+                            <div class="shrink-0 w-14 h-14 bg-[#F1E9FB] text-[#8A4BE2] rounded-xl flex items-center justify-center shadow-sm">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                        @endif
                         <div class="flex-1">
                             <h3 class="font-semibold text-lg text-gray-900 mb-2 group-hover:text-[#8A4BE2] transition-colors">{{ $event->title }}</h3>
                             <div class="flex flex-wrap gap-4 text-sm text-gray-600">
-                                @if($event->starts_at)
+                                @if($event->start_date)
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
-                                    {{ $event->starts_at->format('d F Y') }}
+                                    {{ $event->start_date->format('d F Y') }}
                                 </span>
                                 <span class="flex items-center">
                                     <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    {{ $event->starts_at->format('H:i') }} WIB
+                                    {{ $event->start_date->format('H:i') }} WIB
                                 </span>
                                 @endif
                                 @if($event->location)
@@ -398,7 +410,7 @@
                             </svg>
                         </div>
                         <h3 class="font-semibold text-gray-900 mb-2">Email</h3>
-                        <a href="mailto:cdc@ibi.ac.id" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">cdc@ibi.ac.id</a>
+                        <a href="mailto:kerjasama@ibik.ac.id" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">kerjasama@ibik.ac.id</a>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -408,7 +420,7 @@
                             </svg>
                         </div>
                         <h3 class="font-semibold text-gray-900 mb-2">Instagram</h3>
-                        <a href="https://instagram.com/cdc_ibi" target="_blank" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">@cdc_ibi</a>
+                        <a href="https://www.instagram.com/ibikcollaborationcenter/" target="_blank" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">@ibikcollaborationcenter</a>
                     </div>
 
                     <div class="bg-white rounded-xl p-6 shadow-sm">
@@ -418,7 +430,7 @@
                             </svg>
                         </div>
                         <h3 class="font-semibold text-gray-900 mb-2">Telepon</h3>
-                        <a href="tel:+622518240774" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">(0251) 824-0774</a>
+                        <a href="tel:+6281399017113" class="text-sm text-[#8A4BE2] hover:text-[#8A4BE2]">081399017113</a>
                     </div>
                 </div>
 

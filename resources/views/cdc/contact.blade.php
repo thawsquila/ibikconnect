@@ -27,7 +27,7 @@
                     </svg>
                 </div>
                 <h3 class="font-bold text-gray-900 mb-2">Email</h3>
-                <a href="mailto:cdc@ibi.ac.id" class="text-purple-600 hover:text-purple-700 font-medium">cdc@ibi.ac.id</a>
+                <a href="mailto:kerjasama@ibik.ac.id" class="text-purple-600 hover:text-purple-700 font-medium">kerjasama@ibik.ac.id</a>
             </div>
 
             <div class="bg-white rounded-xl p-8 border border-gray-200 text-center hover:shadow-lg transition-all">
@@ -37,7 +37,7 @@
                     </svg>
                 </div>
                 <h3 class="font-bold text-gray-900 mb-2">Instagram</h3>
-                <a href="https://instagram.com/cdc_ibi" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium">@cdc_ibi</a>
+                <a href="https://www.instagram.com/ibikcollaborationcenter/" target="_blank" class="text-blue-600 hover:text-blue-700 font-medium">@ibikcollaborationcenter</a>
             </div>
 
             <div class="bg-white rounded-xl p-8 border border-gray-200 text-center hover:shadow-lg transition-all">
@@ -47,7 +47,7 @@
                     </svg>
                 </div>
                 <h3 class="font-bold text-gray-900 mb-2">Telepon</h3>
-                <a href="tel:+622518240774" class="text-green-600 hover:text-green-700 font-medium">(0251) 824-0774</a>
+                <a href="tel:+62813990171134" class="text-green-600 hover:text-green-700 font-medium">081399017113</a>
             </div>
         </div>
 
