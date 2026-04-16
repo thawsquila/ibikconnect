@@ -25,13 +25,13 @@ class CDCController extends Controller
         $events = CdcEvent::active()
             ->where('start_date', '>=', now())
             ->orderBy('start_date', 'asc')
-            ->limit(4)
+            ->limit(3)
             ->get();
 
         // Get latest news (6 items for home page)
         $news = CdcNews::published()
             ->latest('published_at')
-            ->limit(6)
+            ->limit(3)
             ->get();
 
         return view('cdc.home', compact('jobs', 'events', 'news'));
@@ -158,6 +158,9 @@ class CDCController extends Controller
         if (!$news->is_published) {
             abort(404);
         }
+
+        // Increment views count
+        $news->increment('views_count');
 
         $relatedNews = CdcNews::published()
             ->where('id', '!=', $news->id)

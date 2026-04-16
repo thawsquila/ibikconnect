@@ -6,7 +6,7 @@
 <div class="space-y-12 py-8">
     <!-- Header -->
     <div class="text-center space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
+        <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#F1E9FB] text-[#8A4BE2] rounded-full text-sm font-semibold">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/>
                 <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/>
@@ -37,7 +37,7 @@
                         {{ $item->published_at->format('d M Y') }}
                     </span>
                     @if($item->category)
-                    <span class="px-2 py-1 bg-green-100 text-green-700 rounded-full font-medium">
+                    <span class="px-2 py-1 bg-[#F1E9FB] text-[#8A4BE2] rounded-full font-medium">
                         {{ $item->category }}
                     </span>
                     @endif

@@ -67,7 +67,7 @@
             </div>
             <p class="text-gray-700 leading-relaxed">
                 Jl. Ranggagading No.1, Kota Bogor, Jawa Barat 16123<br/>
-                Gedung CDC & Humas, Lantai 2
+                Gedung B Cdc IBI Kesatuan
             </p>
         </div>
     </div>

@@ -34,7 +34,7 @@
                             {{ $news->published_at->format('d F Y') }}
                         </span>
                         @if($news->category)
-                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full font-medium">
+                        <span class="px-3 py-1 bg-[#F1E9FB] text-[#8A4BE2] rounded-full font-medium">
                             {{ $news->category }}
                         </span>
                         @endif
