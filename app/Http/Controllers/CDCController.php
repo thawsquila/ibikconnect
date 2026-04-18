@@ -58,6 +58,8 @@ class CDCController extends Controller
             abort(404);
         }
 
+        $job->incrementViews();
+
         $relatedJobs = CdcJobListing::active()
             ->where('id', '!=', $job->id)
             ->latest()

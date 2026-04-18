@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Model untuk event CDC (Career Development Center)
@@ -114,5 +115,19 @@ class CdcEvent extends Model
             return null;
         }
         return max(0, $this->max_participants - $this->registered_count);
+    }
+
+    public function getBannerImageUrlAttribute(): ?string
+    {
+        if (!$this->banner_image) {
+            return null;
+        }
+
+        $publicAbsolutePath = public_path($this->banner_image);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($this->banner_image);
+        }
+
+        return Storage::disk('public')->url($this->banner_image);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Model untuk galeri foto CDC
@@ -61,5 +62,33 @@ class CdcGallery extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('display_order', 'asc');
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+
+        $publicAbsolutePath = public_path($this->image_path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($this->image_path);
+        }
+
+        return Storage::disk('public')->url($this->image_path);
+    }
+
+    public function getThumbnailUrlAttribute(): ?string
+    {
+        if (!$this->thumbnail_path) {
+            return null;
+        }
+
+        $publicAbsolutePath = public_path($this->thumbnail_path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($this->thumbnail_path);
+        }
+
+        return Storage::disk('public')->url($this->thumbnail_path);
     }
 }

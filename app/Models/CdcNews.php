@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 /**
@@ -108,5 +109,19 @@ class CdcNews extends Model
             'is_published' => true,
             'published_at' => now(),
         ]);
+    }
+
+    public function getFeaturedImageUrlAttribute(): ?string
+    {
+        if (!$this->featured_image) {
+            return null;
+        }
+
+        $publicAbsolutePath = public_path($this->featured_image);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($this->featured_image);
+        }
+
+        return Storage::disk('public')->url($this->featured_image);
     }
 }

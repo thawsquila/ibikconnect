@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Model untuk lowongan kerja dan magang CDC
@@ -79,6 +80,29 @@ class CdcJobListing extends Model
     public function incrementViews(): void
     {
         $this->increment('views_count');
+    }
+
+    public function getCompanyLogoUrlAttribute(): ?string
+    {
+        if (!$this->company_logo) {
+            return null;
+        }
+
+        $path = ltrim($this->company_logo, '/\\');
+        $path = str_replace('\\', '/', $path);
+        if (str_starts_with($path, 'public/')) {
+            $path = substr($path, strlen('public/'));
+        }
+        if (str_starts_with($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
+        }
+
+        $publicAbsolutePath = public_path($path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($path);
+        }
+
+        return Storage::disk('public')->url($path);
     }
 
     /**

@@ -340,7 +340,7 @@
                 @forelse($galleries as $gallery)
                 <div class="aspect-square rounded-3xl overflow-hidden bg-gray-200 shadow-md hover:shadow-xl transition-shadow group">
                     @if($gallery->image_path)
-                        <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     @else
                         <div class="w-full h-full flex items-center justify-center bg-linear-to-br from-purple-400 to-blue-600">
                             <svg class="w-12 h-12 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">

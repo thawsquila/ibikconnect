@@ -25,7 +25,7 @@
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden group">
             <div class="aspect-square relative overflow-hidden bg-gray-100">
                 @if($gallery->image_path)
-                    <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}" 
+                    <img src="{{ $gallery->image_url }}" alt="{{ $gallery->title }}" 
                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
                 @else
                     <div class="w-full h-full flex items-center justify-center">

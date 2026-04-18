@@ -77,6 +77,8 @@ return [
         public_path('storage') => storage_path('app/public'),
     ],
 
+    'use_public_uploads' => env('FILES_UPLOAD_PUBLIC', false),
+
     /*
     |--------------------------------------------------------------------------
     | Custom Storage Paths

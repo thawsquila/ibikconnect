@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BeiGallery;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 /**
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
  */
 class BeiGalleryController extends Controller
 {
+    public function __construct(
+        private FileUploadService $fileUploadService
+    ) {}
+
     /**
      * Display a listing of gallery photos
      */
@@ -43,7 +48,10 @@ class BeiGalleryController extends Controller
         try {
             // Handle image upload
             if ($request->hasFile('image_path')) {
-                $validated['image_path'] = $request->file('image_path')->store('bei/galleries', 'public');
+                $validated['image_path'] = $this->fileUploadService->uploadImage(
+                    $request->file('image_path'),
+                    config('filesystems.upload_paths.bei.galleries')
+                );
             }
 
             BeiGallery::create($validated);
@@ -81,9 +89,12 @@ class BeiGalleryController extends Controller
             if ($request->hasFile('image_path')) {
                 // Delete old image
                 if ($gallery->image_path) {
-                    \Storage::disk('public')->delete($gallery->image_path);
+                    $this->fileUploadService->delete($gallery->image_path);
                 }
-                $validated['image_path'] = $request->file('image_path')->store('bei/galleries', 'public');
+                $validated['image_path'] = $this->fileUploadService->uploadImage(
+                    $request->file('image_path'),
+                    config('filesystems.upload_paths.bei.galleries')
+                );
             }
 
             $gallery->update($validated);
@@ -106,7 +117,7 @@ class BeiGalleryController extends Controller
         try {
             // Delete image
             if ($gallery->image_path) {
-                \Storage::disk('public')->delete($gallery->image_path);
+                $this->fileUploadService->delete($gallery->image_path);
             }
 
             $gallery->delete();

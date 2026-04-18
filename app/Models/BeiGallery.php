@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Model untuk galeri foto Gallery BEI
@@ -27,5 +28,19 @@ class BeiGallery extends Model
     public function scopeLatest($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        if (!$this->image_path) {
+            return null;
+        }
+
+        $publicAbsolutePath = public_path($this->image_path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($this->image_path);
+        }
+
+        return Storage::disk('public')->url($this->image_path);
     }
 }

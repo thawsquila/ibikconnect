@@ -119,7 +119,7 @@
                 <div class="flex items-start justify-between mb-4">
                     @if($job->company_logo)
                         <div class="w-12 h-12 bg-white rounded-lg flex items-center justify-center shadow-md shrink-0 border border-gray-100 overflow-hidden">
-                            <img src="{{ Storage::url($job->company_logo) }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
+                            <img src="{{ $job->company_logo_url }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
                         </div>
                     @else
                         <div class="w-12 h-12 bg-linear-to-br from-purple-500 to-blue-500 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-md">
@@ -185,7 +185,7 @@
                     <div class="flex gap-4">
                         @if($event->banner_image)
                             <div class="shrink-0 w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm border border-gray-100 overflow-hidden">
-                                <img src="{{ Storage::url($event->banner_image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                                <img src="{{ $event->banner_image_url }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
                             </div>
                         @else
                             <div class="shrink-0 w-14 h-14 bg-[#F1E9FB] text-[#8A4BE2] rounded-xl flex items-center justify-center shadow-sm">
@@ -261,7 +261,7 @@
             <article class="card overflow-hidden group hover:scale-[1.02] transition-transform">
                 <div class="aspect-video bg-linear-to-br from-purple-400 to-blue-600 relative overflow-hidden">
                     @if($article->featured_image)
-                        <img src="{{ Storage::url($article->featured_image) }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
+                        <img src="{{ $article->featured_image_url }}" alt="{{ $article->title }}" class="w-full h-full object-cover">
                     @endif
                     <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                     <div class="absolute top-4 left-4">

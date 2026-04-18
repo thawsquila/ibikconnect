@@ -25,7 +25,7 @@
                 <div class="flex items-start gap-6 mb-6">
                     @if($job->company_logo)
                         <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center shadow-lg shrink-0 border border-gray-100 overflow-hidden">
-                            <img src="{{ Storage::url($job->company_logo) }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
+                            <img src="{{ $job->company_logo_url }}" alt="{{ $job->company_name }}" class="w-full h-full object-contain">
                         </div>
                     @else
                         <div class="w-16 h-16 bg-linear-to-br from-purple-500 to-blue-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg shrink-0">

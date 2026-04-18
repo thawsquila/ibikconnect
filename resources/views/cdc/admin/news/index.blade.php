@@ -69,7 +69,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-3">
                                 @if($article->featured_image)
-                                    <img src="{{ Storage::url($article->featured_image) }}" alt="{{ $article->title }}" 
+                                    <img src="{{ $article->featured_image_url }}" alt="{{ $article->title }}" 
                                         class="w-16 h-12 rounded object-cover">
                                 @else
                                     <div class="w-16 h-12 bg-gray-200 rounded flex items-center justify-center">

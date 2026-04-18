@@ -25,7 +25,7 @@
                 <!-- Event Image/Date -->
                 @if($event->banner_image)
                 <div class="md:w-64 h-48 md:h-auto shrink-0">
-                    <img src="{{ asset('storage/' . $event->banner_image) }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
+                    <img src="{{ $event->banner_image_url }}" alt="{{ $event->title }}" class="w-full h-full object-cover">
                 </div>
                 @else
                 <div class="md:w-48 bg-linear-to-br from-purple-500 to-blue-500 p-8 flex flex-col items-center justify-center text-white shrink-0">

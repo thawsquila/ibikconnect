@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BeiEvent;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
 
 /**
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
  */
 class BeiEventController extends Controller
 {
+    public function __construct(
+        private FileUploadService $fileUploadService
+    ) {}
+
     /**
      * Display a listing of events
      */
@@ -49,7 +54,10 @@ class BeiEventController extends Controller
         try {
             // Handle image upload if present
             if ($request->hasFile('banner_image')) {
-                $validated['banner_image'] = $request->file('banner_image')->store('bei/events', 'public');
+                $validated['banner_image'] = $this->fileUploadService->uploadImage(
+                    $request->file('banner_image'),
+                    config('filesystems.upload_paths.bei.events')
+                );
             }
 
             BeiEvent::create($validated);
@@ -93,9 +101,12 @@ class BeiEventController extends Controller
             if ($request->hasFile('banner_image')) {
                 // Delete old image if exists
                 if ($event->banner_image) {
-                    \Storage::disk('public')->delete($event->banner_image);
+                    $this->fileUploadService->delete($event->banner_image);
                 }
-                $validated['banner_image'] = $request->file('banner_image')->store('bei/events', 'public');
+                $validated['banner_image'] = $this->fileUploadService->uploadImage(
+                    $request->file('banner_image'),
+                    config('filesystems.upload_paths.bei.events')
+                );
             }
 
             $event->update($validated);
@@ -118,7 +129,7 @@ class BeiEventController extends Controller
         try {
             // Delete image if exists
             if ($event->banner_image) {
-                \Storage::disk('public')->delete($event->banner_image);
+                $this->fileUploadService->delete($event->banner_image);
             }
 
             $event->delete();

@@ -56,7 +56,7 @@
                     </label>
                     @if($news->featured_image)
                         <div class="mb-2">
-                            <img src="{{ Storage::url($news->featured_image) }}" alt="Current Image" class="h-24 w-auto object-cover border rounded">
+                            <img src="{{ $news->featured_image_url }}" alt="Current Image" class="h-24 w-auto object-cover border rounded">
                             <p class="text-xs text-gray-500 mt-1">Gambar saat ini</p>
                         </div>
                     @endif

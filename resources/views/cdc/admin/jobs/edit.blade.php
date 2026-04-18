@@ -56,7 +56,7 @@
                     </label>
                     @if($job->company_logo)
                         <div class="mb-2">
-                            <img src="{{ Storage::url($job->company_logo) }}" alt="Current Logo" class="h-16 w-16 object-contain border rounded">
+                            <img src="{{ $job->company_logo_url }}" alt="Current Logo" class="h-16 w-16 object-contain border rounded">
                             <p class="text-xs text-gray-500 mt-1">Logo saat ini</p>
                         </div>
                     @endif

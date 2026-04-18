@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Model untuk event Gallery BEI
@@ -75,5 +76,28 @@ class BeiEvent extends Model
     public function incrementRegisteredCount(): void
     {
         $this->increment('registered_count');
+    }
+
+    public function getBannerImageUrlAttribute(): ?string
+    {
+        if (!$this->banner_image) {
+            return null;
+        }
+
+        $path = ltrim($this->banner_image, '/\\');
+        $path = str_replace('\\', '/', $path);
+        if (str_starts_with($path, 'public/')) {
+            $path = substr($path, strlen('public/'));
+        }
+        if (str_starts_with($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
+        }
+
+        $publicAbsolutePath = public_path($path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($path);
+        }
+
+        return Storage::disk('public')->url($path);
     }
 }

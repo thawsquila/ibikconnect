@@ -15,6 +15,34 @@ use Intervention\Image\Facades\Image;
  */
 class FileUploadService extends BaseService
 {
+    private function normalizePath(string $path): string
+    {
+        $path = ltrim($path, '/\\');
+        $path = str_replace('\\', '/', $path);
+
+        if (str_starts_with($path, 'public/')) {
+            $path = substr($path, strlen('public/'));
+        }
+
+        if (str_starts_with($path, 'storage/')) {
+            $path = substr($path, strlen('storage/'));
+        }
+
+        return $path;
+    }
+
+    private function shouldUsePublicUploads(): bool
+    {
+        return (bool) config('filesystems.use_public_uploads', false);
+    }
+
+    private function ensureDirectoryExists(string $absolutePath): void
+    {
+        if (!file_exists($absolutePath)) {
+            mkdir($absolutePath, 0755, true);
+        }
+    }
+
     /**
      * Upload a file to storage
      * 
@@ -31,8 +59,14 @@ class FileUploadService extends BaseService
                 $filename = $this->generateUniqueFilename($file);
             }
 
-            // Store file
-            $storedPath = $file->storeAs($path, $filename, 'public');
+            if ($this->shouldUsePublicUploads()) {
+                $fullPath = public_path($path);
+                $this->ensureDirectoryExists($fullPath);
+                $file->move($fullPath, $filename);
+                $storedPath = $path . '/' . $filename;
+            } else {
+                $storedPath = $file->storeAs($path, $filename, 'public');
+            }
 
             $this->logInfo('File uploaded successfully', [
                 'path' => $storedPath,
@@ -66,18 +100,15 @@ class FileUploadService extends BaseService
     ): string {
         try {
             $filename = $this->generateUniqueFilename($file);
-            $fullPath = storage_path('app/public/' . $path);
-
-            // Create directory if not exists
-            if (!file_exists($fullPath)) {
-                mkdir($fullPath, 0755, true);
+            if ($this->shouldUsePublicUploads()) {
+                $fullPath = public_path($path);
+                $this->ensureDirectoryExists($fullPath);
+                $file->move($fullPath, $filename);
+            } else {
+                $fullPath = storage_path('app/public/' . $path);
+                $this->ensureDirectoryExists($fullPath);
+                $file->storeAs($path, $filename, 'public');
             }
-
-            $filePath = $fullPath . '/' . $filename;
-
-            // For now, just store the file directly
-            // TODO: Add image optimization with Intervention Image
-            $file->storeAs($path, $filename, 'public');
 
             $this->logInfo('Image uploaded successfully', [
                 'path' => $path . '/' . $filename,
@@ -104,13 +135,24 @@ class FileUploadService extends BaseService
             return false;
         }
 
+        $path = $this->normalizePath($path);
+
         try {
+            $deleted = false;
             if (Storage::disk('public')->exists($path)) {
                 Storage::disk('public')->delete($path);
                 $this->logInfo('File deleted successfully', ['path' => $path]);
-                return true;
+                $deleted = true;
             }
-            return false;
+
+            $publicAbsolutePath = public_path($path);
+            if (file_exists($publicAbsolutePath)) {
+                @unlink($publicAbsolutePath);
+                $this->logInfo('File deleted successfully', ['path' => $path]);
+                $deleted = true;
+            }
+
+            return $deleted;
         } catch (\Exception $e) {
             $this->logError('File deletion failed', [
                 'error' => $e->getMessage(),
@@ -146,6 +188,13 @@ class FileUploadService extends BaseService
     {
         if (!$path) {
             return null;
+        }
+
+        $path = $this->normalizePath($path);
+
+        $publicAbsolutePath = public_path($path);
+        if (file_exists($publicAbsolutePath)) {
+            return asset($path);
         }
 
         return Storage::disk('public')->url($path);

@@ -98,7 +98,7 @@
                     </label>
                     @if($event->banner_image)
                         <div class="mb-2">
-                            <img src="{{ Storage::url($event->banner_image) }}" alt="Current Banner" class="h-24 w-auto object-cover border rounded">
+                            <img src="{{ $event->banner_image_url }}" alt="Current Banner" class="h-24 w-auto object-cover border rounded">
                             <p class="text-xs text-gray-500 mt-1">Banner saat ini</p>
                         </div>
                     @endif
