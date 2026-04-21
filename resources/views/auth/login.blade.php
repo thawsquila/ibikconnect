@@ -20,7 +20,7 @@
         <!-- Logo & Title -->
         <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-lg mb-4">
-                <img src="{{ asset('LOGO_IBIK.png') }}" alt="IBI Logo" class="w-16 h-16 object-contain">
+                <img src="{{ asset('LogoNew.png') }}" alt="IBI Logo" class="w-16 h-16 object-contain">
             </div>
             <h1 class="text-3xl font-bold text-gray-900 mb-2">Admin Panel</h1>
             <p class="text-gray-600">IBI Connect Management System</p>

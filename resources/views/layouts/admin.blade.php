@@ -27,7 +27,7 @@
             <div id="sidebar-content" class="flex flex-col w-64 bg-white border-r border-gray-200 transition-all duration-300">
                 <!-- Logo -->
                 <div class="flex items-center justify-center h-16 px-4 border-b border-gray-200">
-                    <img src="{{ asset('LOGO_IBIK.png') }}" alt="IBI" class="h-10 sidebar-logo">
+                    <img src="{{ asset('LogoNew.png') }}" alt="IBI" class="h-10 sidebar-logo">
                     <span class="ml-2 text-lg font-bold text-gray-900 sidebar-text">Admin Panel</span>
                 </div>
 
