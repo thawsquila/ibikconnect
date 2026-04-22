@@ -24,7 +24,7 @@
             @if($gallery->image_path)
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Foto Saat Ini</label>
-                <img src="{{ asset('storage/' . $gallery->image_path) }}" alt="{{ $gallery->title }}" 
+                <img src="{{ asset($gallery->image_path) }}" alt="{{ $gallery->title }}" 
                     class="max-w-md rounded-lg border border-gray-300">
             </div>
             @endif

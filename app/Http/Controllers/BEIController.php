@@ -15,17 +15,14 @@ class BEIController extends Controller
      */
     public function index()
     {
-        // Get latest educations (3 items for home page)
-        $educations = BeiEducation::latest()
-            ->limit(3)
+        $educations = BeiEducation::latest()->limit(3)->get();
+        $galleries  = BeiGallery::latest()->limit(4)->get();
+        $openEvents = BeiEvent::published()
+            ->where('is_registration_open', true)
+            ->latest('starts_at')
             ->get();
 
-        // Get latest galleries (4 items for home page)
-        $galleries = BeiGallery::latest()
-            ->limit(4)
-            ->get();
-
-        return view('bei.home', compact('educations', 'galleries'));
+        return view('bei.home', compact('educations', 'galleries', 'openEvents'));
     }
 
     /**
@@ -139,37 +136,65 @@ class BEIController extends Controller
     }
 
     /**
-     * Registration form page
+     * Registration form page - daftar event BEI
      */
     public function registration()
     {
-        return view('bei.registration');
+        $events = BeiEvent::published()
+            ->where('is_registration_open', true)
+            ->latest('starts_at')
+            ->get();
+
+        return view('bei.registration', compact('events'));
     }
 
     /**
-     * Submit registration
+     * Submit event registration
      */
     public function submitRegistration(Request $request)
     {
         $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'nim' => ['nullable', 'string', 'max:50'],
-            'email' => ['required', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:20'],
-            'message' => ['nullable', 'string', 'max:1000'],
+            'event_id'  => ['required', 'exists:bei_events,id'],
+            'name'      => ['required', 'string', 'max:255'],
+            'nim'       => ['nullable', 'string', 'max:50'],
+            'email'     => ['required', 'email', 'max:255'],
+            'phone'     => ['nullable', 'string', 'max:20'],
+            'message'   => ['nullable', 'string', 'max:1000'],
         ]);
+
+        $event = BeiEvent::findOrFail($validated['event_id']);
+
+        if (!$event->is_registration_open) {
+            return back()->withInput()->with('error', 'Pendaftaran untuk event ini sudah ditutup.');
+        }
+
+        if ($event->max_participants && $event->registered_count >= $event->max_participants) {
+            return back()->withInput()->with('error', 'Maaf, kuota peserta sudah penuh.');
+        }
+
+        // Cek duplikat
+        $exists = BeiRegistration::where('event_id', $event->id)
+            ->where('email', $validated['email'])
+            ->exists();
+
+        if ($exists) {
+            return back()->withInput()->with('error', 'Email ini sudah terdaftar untuk event tersebut.');
+        }
 
         BeiRegistration::create([
-            'event_id' => null,
-            'name' => $validated['name'],
-            'nim' => $validated['nim'] ?? null,
-            'email' => $validated['email'],
-            'phone' => $validated['phone'] ?? null,
-            'message' => $validated['message'] ?? null,
-            'event_title' => 'Pendaftaran Member Gallery BEI',
-            'status' => 'pending',
+            'event_id'    => $event->id,
+            'event_title' => $event->title,
+            'name'        => $validated['name'],
+            'nim'         => $validated['nim'] ?? null,
+            'email'       => $validated['email'],
+            'phone'       => $validated['phone'] ?? null,
+            'message'     => $validated['message'] ?? null,
+            'status'      => 'pending',
         ]);
 
-        return back()->with('success', 'Pendaftaran terkirim. Terima kasih! Tim kami akan menghubungi Anda segera.');
+        $event->increment('registered_count');
+
+        return redirect(route('bei.home') . '#daftar')
+            ->with('success', 'Pendaftaran berhasil! Kami akan menghubungi Anda segera.');
     }
 }

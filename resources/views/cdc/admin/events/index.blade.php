@@ -106,12 +106,22 @@
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex flex-col gap-1">
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium {{ $event->is_published ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
-                                    {{ $event->is_published ? 'Published' : 'Draft' }}
-                                </span>
-                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium {{ $event->is_registration_open ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800' }}">
-                                    {{ $event->is_registration_open ? 'Buka' : 'Tutup' }}
-                                </span>
+                                <form action="{{ route('admin.cdc.events.toggle-publish', $event) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium w-full justify-center transition-colors
+                                        {{ $event->is_published ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-gray-100 text-gray-800 hover:bg-gray-200' }}">
+                                        {{ $event->is_published ? 'Published' : 'Draft' }}
+                                    </button>
+                                </form>
+                                <form action="{{ route('admin.cdc.events.toggle-registration', $event) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium w-full justify-center transition-colors
+                                        {{ $event->is_registration_open ? 'bg-blue-100 text-blue-800 hover:bg-blue-200' : 'bg-red-100 text-red-800 hover:bg-red-200' }}">
+                                        {{ $event->is_registration_open ? 'Buka' : 'Tutup' }}
+                                    </button>
+                                </form>
                             </div>
                         </td>
                         <td class="px-6 py-4 text-right text-sm font-medium">

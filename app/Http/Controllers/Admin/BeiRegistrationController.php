@@ -3,32 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BeiEvent;
 use App\Models\BeiRegistration;
 use Illuminate\Http\Request;
 
-/**
- * BEI Registration Management Controller
- * 
- * Handles member registrations from public form
- */
 class BeiRegistrationController extends Controller
 {
-    /**
-     * Display a listing of registrations
-     */
-    public function index()
+    public function index(Request $request)
     {
-        $registrations = BeiRegistration::whereNull('event_id')
-            ->orWhere('event_title', 'Pendaftaran Member Gallery BEI')
-            ->latest()
-            ->paginate(20);
-        
-        return view('bei.admin.registrations.index', compact('registrations'));
+        $query = BeiRegistration::with('event')->latest();
+
+        if ($request->filled('event_id')) {
+            $query->where('event_id', $request->event_id);
+        }
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $registrations = $query->paginate(20)->withQueryString();
+        $events = BeiEvent::orderBy('starts_at', 'desc')->get();
+
+        return view('bei.admin.registrations.index', compact('registrations', 'events'));
     }
 
-    /**
-     * Update registration status
-     */
     public function updateStatus(Request $request, BeiRegistration $registration)
     {
         $validated = $request->validate([
@@ -37,25 +35,18 @@ class BeiRegistrationController extends Controller
 
         $registration->update(['status' => $validated['status']]);
 
-        $statusText = [
-            'approved' => 'disetujui',
-            'rejected' => 'ditolak',
-            'pending' => 'dikembalikan ke pending',
-        ];
+        $statusText = ['approved' => 'disetujui', 'rejected' => 'ditolak', 'pending' => 'dikembalikan ke pending'];
 
         return back()->with('success', 'Pendaftaran berhasil ' . $statusText[$validated['status']] . '!');
     }
 
-    /**
-     * Delete registration
-     */
     public function destroy(BeiRegistration $registration)
     {
         try {
             $registration->delete();
             return back()->with('success', 'Pendaftaran berhasil dihapus!');
         } catch (\Exception $e) {
-            return back()->with('error', 'Gagal menghapus pendaftaran: ' . $e->getMessage());
+            return back()->with('error', 'Gagal menghapus: ' . $e->getMessage());
         }
     }
 }

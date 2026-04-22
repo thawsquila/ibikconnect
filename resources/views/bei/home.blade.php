@@ -411,7 +411,7 @@
                         <div class="grid grid-cols-2 gap-4 pt-4">
                             <div class="bg-blue-50/50 rounded-2xl p-6">
                                 <p class="text-[9px] text-[#8A4BE2] font-black uppercase tracking-widest mb-1">Total Return</p>
-                                <p class="text-2xl font-black text-gray-900">159%</p>
+                                <p id="calc-return" class="text-2xl font-black text-gray-900">159%</p>
                             </div>
                             <div class="bg-gray-50 rounded-2xl p-6">
                                 <p class="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-1">Strategy</p>
@@ -504,47 +504,85 @@
                             </div>
                             <div>
                                 <p class="text-sm font-bold">Butuh Bantuan?</p>
-                                <p class="text-xs text-blue-100">Hubungi kami via email: cdc@ibi.ac.id</p>
+                                <p class="text-xs text-blue-100">Hubungi kami via email: bei@ibik.ac.id</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="p-12 lg:p-20 bg-[#F1E9FB]">
-                    @if (session('status'))
+                    @if(session('success'))
                         <div class="mb-8 rounded-2xl border border-green-200 bg-green-50 p-4 flex items-center gap-3 text-green-700 font-bold text-sm">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-                            {{ session('status') }}
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if(session('error'))
+                        <div class="mb-8 rounded-2xl border border-red-200 bg-red-50 p-4 flex items-center gap-3 text-red-700 font-bold text-sm">
+                            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            {{ session('error') }}
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ url('/bei/register') }}" class="space-y-6">
+                    @if($openEvents->isEmpty())
+                        <div class="text-center py-8">
+                            <svg class="w-12 h-12 mx-auto text-purple-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                            <p class="font-bold text-gray-700">Belum ada event yang membuka pendaftaran.</p>
+                            <p class="text-sm text-gray-500 mt-1">Pantau terus halaman ini!</p>
+                        </div>
+                    @else
+                    <form method="POST" action="{{ route('bei.registration.submit') }}" class="space-y-4">
                         @csrf
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Nama Lengkap</label>
-                            <input name="name" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="text" placeholder="Masukkan nama lengkap" required>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">Nama Lengkap</label>
+                            <input name="name" value="{{ old('name') }}" required
+                                class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-semibold text-gray-900 focus:border-[#8A4BE2] focus:outline-none transition-all"
+                                type="text" placeholder="Masukkan nama lengkap">
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">NIM (opsional)</label>
-                            <input name="nim" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="text" placeholder="Masukkan NIM (jika mahasiswa)">
+
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">NIM (Opsional)</label>
+                                <input name="nim" value="{{ old('nim') }}"
+                                    class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-semibold text-gray-900 focus:border-[#8A4BE2] focus:outline-none transition-all"
+                                    type="text" placeholder="Nomor Induk Mahasiswa">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">No. Telepon</label>
+                                <input name="phone" value="{{ old('phone') }}"
+                                    class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-semibold text-gray-900 focus:border-[#8A4BE2] focus:outline-none transition-all"
+                                    type="tel" placeholder="08xxxxxxxxxx">
+                            </div>
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Email</label>
-                            <input name="email" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden" type="email" placeholder="nama@email.com" required>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">Email</label>
+                            <input name="email" value="{{ old('email') }}" required
+                                class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-semibold text-gray-900 focus:border-[#8A4BE2] focus:outline-none transition-all"
+                                type="email" placeholder="nama@email.com">
                         </div>
-                        <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 tracking-widest uppercase">Pilih Event</label>
-                            <select name="event" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 font-bold text-gray-900 focus:border-blue-600 focus:bg-white transition-all outline-hidden appearance-none" required>
-                                <option value="Sekolah Pasar Modal">Sekolah Pasar Modal Level 1</option>
-                                <option value="Seminar Investasi">Investment Masterclass</option>
-                                <option value="Webinar BEI">Webinar Nasional Pasar Modal</option>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 tracking-widest uppercase mb-2">Pilih Event</label>
+                            <select name="event_id" required
+                                class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-3 font-semibold text-gray-900 focus:border-[#8A4BE2] focus:outline-none transition-all appearance-none">
+                                <option value="">-- Pilih Event --</option>
+                                @foreach($openEvents as $ev)
+                                <option value="{{ $ev->id }}" {{ old('event_id') == $ev->id ? 'selected' : '' }}>
+                                    {{ $ev->title }}{{ $ev->starts_at ? ' — ' . $ev->starts_at->format('d M Y') : '' }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="w-full bg-[#8A4BE2] hover:bg-[#7A3BD6] text-white font-black py-5 rounded-2xl shadow-xl shadow-[#8A4BE2]/30 transition-all active:scale-95 flex items-center justify-center gap-2 text-lg">
-                            Kirim Pendaftaran
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                        </button>
+
+                        <div class="pt-2">
+                            <button type="submit" class="bg-[#8A4BE2] hover:bg-[#7A3BD6] text-white font-bold px-8 py-3 rounded-xl shadow-lg shadow-[#8A4BE2]/30 transition-all active:scale-95 inline-flex items-center gap-2 text-sm">
+                                Kirim Pendaftaran
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </button>
+                        </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>
@@ -594,4 +632,40 @@
     animation-play-state: paused;
 }
 </style>
+
+<script>
+// Real-time Investment Calculator
+function calculateInvestment() {
+    const initial = parseFloat(document.getElementById('calc-initial').value) || 0;
+    const years = parseFloat(document.getElementById('calc-year').value) || 0;
+    const rate = 0.10; // 10% per tahun
+
+    // Compound interest formula: FV = PV * (1 + r)^n
+    const futureValue = initial * Math.pow(1 + rate, years);
+    const totalReturn = ((futureValue - initial) / initial * 100).toFixed(0);
+
+    // Format currency
+    const formatted = new Intl.NumberFormat('id-ID').format(Math.round(futureValue));
+
+    // Update UI
+    document.getElementById('calc-result').textContent = 'Rp ' + formatted;
+    document.getElementById('calc-desc').textContent = `Growth ${(rate * 100)}% per tahun`;
+    document.getElementById('calc-return').textContent = totalReturn + '%';
+}
+
+// Real-time calculation on input
+document.addEventListener('DOMContentLoaded', function() {
+    const initialInput = document.getElementById('calc-initial');
+    const yearInput = document.getElementById('calc-year');
+
+    if (initialInput && yearInput) {
+        // Calculate on page load
+        calculateInvestment();
+
+        // Real-time update on input
+        initialInput.addEventListener('input', calculateInvestment);
+        yearInput.addEventListener('input', calculateInvestment);
+    }
+});
+</script>
 @endsection

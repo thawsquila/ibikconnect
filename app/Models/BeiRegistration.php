@@ -21,6 +21,9 @@ class BeiRegistration extends Model
         'name',
         'nim',
         'email',
+        'phone',
+        'message',
+        'status',
         'event_title',
     ];
 

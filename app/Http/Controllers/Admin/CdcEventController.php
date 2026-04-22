@@ -159,4 +159,24 @@ class CdcEventController extends Controller
             $filename
         );
     }
+
+    /**
+     * Toggle publish status
+     */
+    public function togglePublish(CdcEvent $event)
+    {
+        $event->update(['is_published' => !$event->is_published]);
+        $status = $event->is_published ? 'dipublikasikan' : 'dijadikan draft';
+        return back()->with('success', "Event berhasil {$status}!");
+    }
+
+    /**
+     * Toggle registration open/close
+     */
+    public function toggleRegistration(CdcEvent $event)
+    {
+        $event->update(['is_registration_open' => !$event->is_registration_open]);
+        $status = $event->is_registration_open ? 'dibuka' : 'ditutup';
+        return back()->with('success', "Pendaftaran berhasil {$status}!");
+    }
 }
